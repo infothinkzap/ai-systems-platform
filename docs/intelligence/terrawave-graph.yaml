@@ -1,0 +1,1192 @@
+schema_version: "1.4"
+metadata:
+  name: Terrawave Semantic Ontology
+  description: Machine-readable graph representing Terrawave's identity,
+    capabilities, data provenance, and epistemic maturity.
+  last_updated: 2026-08-14
+entities:
+  - id: person:adarsh_singh_pawar
+    type: Person
+    name: Adarsh Singh Pawar
+  - id: person:rahul_arora
+    type: Person
+    name: Rahul Arora
+  - id: org:terrawave
+    type: Organization
+    name: Terrawave
+  - id: org:randomly_systematic
+    type: Organization
+    name: Randomly Systematic
+  - id: phil:problem_first
+    type: CorePhilosophy
+    name: Problem First
+    epistemic_status: established
+    evidence:
+      - internal_reasoning
+  - id: capgroup:understand
+    type: CapabilityGroup
+    name: UNDERSTAND
+  - id: capgroup:reason
+    type: CapabilityGroup
+    name: REASON
+  - id: capgroup:execute
+    type: CapabilityGroup
+    name: EXECUTE
+  - id: cap:doc_intelligence
+    type: Capability
+    name: Document Intelligence
+  - id: cap:conv_understanding
+    type: Capability
+    name: Conversation Understanding
+  - id: cap:data_structuring
+    type: Capability
+    name: Data Structuring / Extraction
+  - id: cap:financial_reasoning
+    type: Capability
+    name: Financial Reasoning
+  - id: cap:graph_intelligence
+    type: Capability
+    name: Graph Intelligence
+  - id: cap:intent_detection
+    type: Capability
+    name: Intent Detection
+  - id: cap:memory_context
+    type: Capability
+    name: Memory / Context
+  - id: cap:personal_reasoning
+    type: Capability
+    name: Personal Reasoning
+  - id: cap:adaptive_learning
+    type: Capability
+    name: Adaptive Learning
+  - id: cap:knowledge_graph
+    type: Capability
+    name: Knowledge Graph Capability
+  - id: cap:exception_handling
+    type: Capability
+    name: Exception Handling
+  - id: cap:document_validation
+    type: Capability
+    name: Document Validation
+  - id: cap:automation
+    type: Capability
+    name: Automation
+  - id: cap:workflow_orchestration
+    type: Capability
+    name: Workflow Orchestration
+  - id: cap:lead_routing
+    type: Capability
+    name: Lead Routing
+  - id: cap:integrations
+    type: Capability
+    name: Integrations / Agents
+  - id: domain:business_intelligence
+    type: Domain
+    name: Business Intelligence
+  - id: domain:knowledge_intelligence
+    type: Domain
+    name: Knowledge Intelligence
+  - id: domain:personal_intelligence
+    type: Domain
+    name: Personal Intelligence
+  - id: product:ai_cfo
+    type: Product
+    name: AI CFO
+    maturity_status: building
+    epistemic_status: designed
+    evidence:
+      - internal_reasoning
+      - prototype_evidence
+  - id: product:ca_automation
+    type: Product
+    name: CA Automation
+    maturity_status: building
+    epistemic_status: designed
+    evidence:
+      - internal_reasoning
+      - prototype_evidence
+  - id: product:lead_intelligence
+    type: Product
+    name: Lead Intelligence
+    maturity_status: prototype
+    epistemic_status: tested
+    evidence:
+      - prototype_evidence
+      - experiment
+  - id: product:examos
+    type: Product
+    name: ExamOS
+    maturity_status: concept
+    epistemic_status: hypothesis
+    evidence:
+      - internal_reasoning
+  - id: product:selfos
+    type: Product
+    name: SelfOS
+    maturity_status: concept
+    epistemic_status: hypothesis
+    evidence:
+      - internal_reasoning
+  - id: service:ai_opportunity_discovery
+    type: Service
+    name: AI Opportunity Discovery
+  - id: service:ai_workflow_analysis
+    type: Service
+    name: AI Workflow Analysis
+  - id: service:ai_system_design
+    type: Service
+    name: AI System Design
+  - id: service:ai_integration
+    type: Service
+    name: AI Integration
+  - id: service:ai_automation
+    type: Service
+    name: AI Automation
+  - id: service:custom_ai_system_development
+    type: Service
+    name: Custom AI System Development
+  - id: service:ai_transformation
+    type: Service
+    name: AI Transformation
+  - id: persona:business_owner
+    type: Persona
+    name: Business Owner
+  - id: persona:cfo_finance_leader
+    type: Persona
+    name: CFO / Finance Leader
+  - id: persona:accounting_team
+    type: Persona
+    name: Accounting Team
+  - id: persona:sales_marketing_team
+    type: Persona
+    name: Sales / Marketing Team
+  - id: persona:exam_aspirant
+    type: Persona
+    name: Exam Aspirant
+  - id: persona:individual
+    type: Persona
+    name: Individual
+  - id: outcome:better_financial_decisions
+    type: Outcome
+    name: Better Financial Decisions
+  - id: outcome:reduced_manual_workload
+    type: Outcome
+    name: Reduced Manual Workload
+  - id: outcome:improved_lead_follow_through
+    type: Outcome
+    name: Improved Lead Follow-through
+  - id: outcome:personalized_exam_preparation
+    type: Outcome
+    name: Personalized Exam Preparation
+  - id: outcome:personalized_assistance
+    type: Outcome
+    name: Personalized Assistance
+  - id: outcome:better_contextual_decisions
+    type: Outcome
+    name: Better Contextual Decisions
+  - id: metric:hours_saved
+    type: Metric
+    name: Hours Saved
+  - id: metric:processing_time
+    type: Metric
+    name: Processing Time
+  - id: metric:error_rate
+    type: Metric
+    name: Error Rate
+  - id: metric:automation_rate
+    type: Metric
+    name: Automation Rate
+  - id: metric:decision_latency
+    type: Metric
+    name: Decision Latency
+  - id: metric:followup_completion_rate
+    type: Metric
+    name: Follow-up Completion Rate
+  - id: metric:conversion_rate
+    type: Metric
+    name: Conversion Rate
+  - id: metric:revision_performance
+    type: Metric
+    name: Revision Performance
+  - id: metric:context_retrieval_accuracy
+    type: Metric
+    name: Context Retrieval Accuracy
+  - id: metric:personalization_accuracy
+    type: Metric
+    name: Personalization Accuracy
+  - id: problem:financial_visibility
+    type: Problem
+    name: Poor Financial Visibility
+  - id: problem:financial_decision_latency
+    type: Problem
+    name: Financial Decision Latency
+  - id: problem:fragmented_financial_information
+    type: Problem
+    name: Fragmented Financial Information
+  - id: problem:manual_reconciliation
+    type: Problem
+    name: Manual Reconciliation
+  - id: problem:document_processing_burden
+    type: Problem
+    name: Document Processing Burden
+  - id: problem:exception_heavy_accounting_work
+    type: Problem
+    name: Exception Heavy Accounting Work
+  - id: problem:fragmented_lead_conversations
+    type: Problem
+    name: Fragmented Lead Conversations
+  - id: problem:lost_leads
+    type: Problem
+    name: Lost Leads
+  - id: problem:manual_lead_qualification
+    type: Problem
+    name: Manual Lead Qualification
+  - id: problem:followup_inconsistency
+    type: Problem
+    name: Follow-up Inconsistency
+  - id: problem:fragmented_exam_preparation
+    type: Problem
+    name: Fragmented Exam Preparation
+  - id: problem:poor_personalization
+    type: Problem
+    name: Poor Personalization
+  - id: problem:revision_inefficiency
+    type: Problem
+    name: Revision Inefficiency
+  - id: problem:generic_ai_lacks_personal_context
+    type: Problem
+    name: Generic AI Lacks Personal Context
+  - id: problem:fragmented_personal_knowledge
+    type: Problem
+    name: Fragmented Personal Knowledge
+  - id: problem:decision_context_loss
+    type: Problem
+    name: Decision Context Loss
+  - id: workflow:financial_review
+    type: Workflow
+    name: Financial Review
+  - id: workflow:financial_analysis
+    type: Workflow
+    name: Financial Analysis
+  - id: workflow:management_decision_support
+    type: Workflow
+    name: Management Decision Support
+  - id: workflow:invoice_processing
+    type: Workflow
+    name: Invoice Processing
+  - id: workflow:gst_reconciliation
+    type: Workflow
+    name: GST Reconciliation
+  - id: workflow:tds_reconciliation
+    type: Workflow
+    name: TDS Reconciliation
+  - id: workflow:exception_review
+    type: Workflow
+    name: Exception Review
+  - id: workflow:lead_capture
+    type: Workflow
+    name: Lead Capture
+  - id: workflow:lead_qualification
+    type: Workflow
+    name: Lead Qualification
+  - id: workflow:lead_routing
+    type: Workflow
+    name: Lead Routing
+  - id: workflow:lead_followup
+    type: Workflow
+    name: Lead Follow-up
+  - id: workflow:study_planning
+    type: Workflow
+    name: Study Planning
+  - id: workflow:practice
+    type: Workflow
+    name: Practice
+  - id: workflow:revision
+    type: Workflow
+    name: Revision
+  - id: workflow:assessment
+    type: Workflow
+    name: Assessment
+  - id: workflow:goal_management
+    type: Workflow
+    name: Goal Management
+  - id: workflow:personal_knowledge_management
+    type: Workflow
+    name: Personal Knowledge Management
+  - id: workflow:decision_support
+    type: Workflow
+    name: Decision Support
+  - id: data:transactions
+    type: DataPrimitive
+    name: transactions
+  - id: data:financial_statements
+    type: DataPrimitive
+    name: financial statements
+  - id: data:invoices
+    type: DataPrimitive
+    name: invoices
+  - id: data:vendor_records
+    type: DataPrimitive
+    name: vendor records
+  - id: data:payments
+    type: DataPrimitive
+    name: payments
+  - id: data:gst_data
+    type: DataPrimitive
+    name: gst data
+  - id: data:tds_data
+    type: DataPrimitive
+    name: tds data
+  - id: data:vendor_data
+    type: DataPrimitive
+    name: vendor data
+  - id: data:reconciliation_records
+    type: DataPrimitive
+    name: reconciliation records
+  - id: data:whatsapp_conversations
+    type: DataPrimitive
+    name: whatsapp conversations
+  - id: data:instagram_conversations
+    type: DataPrimitive
+    name: instagram conversations
+  - id: data:messages
+    type: DataPrimitive
+    name: messages
+  - id: data:lead_profiles
+    type: DataPrimitive
+    name: lead profiles
+  - id: data:intent_signals
+    type: DataPrimitive
+    name: intent signals
+  - id: data:followup_history
+    type: DataPrimitive
+    name: followup history
+  - id: data:syllabus
+    type: DataPrimitive
+    name: syllabus
+  - id: data:questions
+    type: DataPrimitive
+    name: questions
+  - id: data:answers
+    type: DataPrimitive
+    name: answers
+  - id: data:study_sessions
+    type: DataPrimitive
+    name: study sessions
+  - id: data:performance_data
+    type: DataPrimitive
+    name: performance data
+  - id: data:knowledge_graph_nodes
+    type: DataPrimitive
+    name: knowledge graph nodes
+  - id: data:goals
+    type: DataPrimitive
+    name: goals
+  - id: data:preferences
+    type: DataPrimitive
+    name: preferences
+  - id: data:personal_knowledge
+    type: DataPrimitive
+    name: personal knowledge
+  - id: data:routines
+    type: DataPrimitive
+    name: routines
+  - id: data:tasks
+    type: DataPrimitive
+    name: tasks
+  - id: data:decisions
+    type: DataPrimitive
+    name: decisions
+  - id: data:personal_context
+    type: DataPrimitive
+    name: personal context
+  - id: source:erp
+    type: DataSource
+    name: erp
+  - id: source:accounting_software
+    type: DataSource
+    name: accounting software
+  - id: source:api
+    type: DataSource
+    name: api
+  - id: source:csv
+    type: DataSource
+    name: csv
+  - id: source:pdf
+    type: DataSource
+    name: pdf
+  - id: source:image
+    type: DataSource
+    name: image
+  - id: source:email
+    type: DataSource
+    name: email
+  - id: source:whatsapp
+    type: DataSource
+    name: whatsapp
+  - id: source:instagram
+    type: DataSource
+    name: instagram
+  - id: source:database
+    type: DataSource
+    name: database
+  - id: source:user_input
+    type: DataSource
+    name: user input
+  - id: source:external_system
+    type: DataSource
+    name: external system
+  - id: decision:financial_management
+    type: Decision
+    name: Financial Management Decision
+  - id: decision:study_plan_adjustment
+    type: Decision
+    name: Study Plan Adjustment
+  - id: decision:personal_priority
+    type: Decision
+    name: Personal Priority Decision
+  - id: action:reconciliation_review
+    type: Action
+    name: Reconciliation Review
+  - id: action:exception_escalation
+    type: Action
+    name: Exception Escalation
+  - id: action:lead_routing_action
+    type: Action
+    name: Lead Routing Action
+  - id: action:lead_followup_action
+    type: Action
+    name: Lead Follow-up Action
+  - id: method:understand
+    type: MethodStep
+    name: Understand
+  - id: method:deconstruct
+    type: MethodStep
+    name: Deconstruct
+  - id: method:design
+    type: MethodStep
+    name: Design
+  - id: method:build
+    type: MethodStep
+    name: Build
+  - id: method:validate
+    type: MethodStep
+    name: Validate
+  - id: method:deploy
+    type: MethodStep
+    name: Deploy
+  - id: method:measure
+    type: MethodStep
+    name: Measure
+  - id: method:learn
+    type: MethodStep
+    name: Learn
+  - id: method:improve
+    type: MethodStep
+    name: Improve
+  - id: journey:problem
+    type: JourneyStep
+    name: Problem
+  - id: journey:current_state
+    type: JourneyStep
+    name: Current State
+  - id: journey:workflow
+    type: JourneyStep
+    name: Workflow
+  - id: journey:friction
+    type: JourneyStep
+    name: Friction
+  - id: journey:ai_opportunity
+    type: JourneyStep
+    name: Ai Opportunity
+  - id: journey:system_design
+    type: JourneyStep
+    name: System Design
+  - id: journey:prototype
+    type: JourneyStep
+    name: Prototype
+  - id: journey:implementation
+    type: JourneyStep
+    name: Implementation
+  - id: journey:integration
+    type: JourneyStep
+    name: Integration
+  - id: journey:measurement
+    type: JourneyStep
+    name: Measurement
+  - id: journey:iteration
+    type: JourneyStep
+    name: Iteration
+relationships:
+  - source: org:terrawave
+    type: FOUNDED_BY
+    target: person:adarsh_singh_pawar
+  - source: org:terrawave
+    type: FOUNDED_BY
+    target: person:rahul_arora
+  - source: org:terrawave
+    type: SEPARATE_FROM
+    target: org:randomly_systematic
+  - source: org:terrawave
+    type: OPERATES_BY
+    target: phil:problem_first
+  - source: phil:problem_first
+    type: INFORMS
+    target: method:understand
+  - source: cap:doc_intelligence
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:understand
+  - source: cap:conv_understanding
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:understand
+  - source: cap:data_structuring
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:understand
+  - source: cap:financial_reasoning
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:reason
+  - source: cap:graph_intelligence
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:reason
+  - source: cap:intent_detection
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:reason
+  - source: cap:memory_context
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:reason
+  - source: cap:personal_reasoning
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:reason
+  - source: cap:adaptive_learning
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:reason
+  - source: cap:knowledge_graph
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:reason
+  - source: cap:exception_handling
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:reason
+  - source: cap:document_validation
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:reason
+  - source: cap:automation
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:execute
+  - source: cap:workflow_orchestration
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:execute
+  - source: cap:lead_routing
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:execute
+  - source: cap:integrations
+    type: CAPABILITY_BELONGS_TO_GROUP
+    target: capgroup:execute
+  - source: product:ai_cfo
+    type: BELONGS_TO
+    target: domain:business_intelligence
+  - source: product:ca_automation
+    type: BELONGS_TO
+    target: domain:business_intelligence
+  - source: product:lead_intelligence
+    type: BELONGS_TO
+    target: domain:business_intelligence
+  - source: product:examos
+    type: BELONGS_TO
+    target: domain:knowledge_intelligence
+  - source: product:selfos
+    type: BELONGS_TO
+    target: domain:personal_intelligence
+  - source: service:ai_opportunity_discovery
+    type: SERVICE_ADDRESSES
+    target: problem:financial_visibility
+  - source: service:ai_system_design
+    type: SERVICE_USES
+    target: cap:workflow_orchestration
+  - source: service:ai_integration
+    type: SERVICE_SUPPORTS
+    target: product:ai_cfo
+  - source: service:custom_ai_system_development
+    type: SERVICE_INTEGRATES
+    target: source:erp
+  - source: service:ai_automation
+    type: SERVICE_ADDRESSES
+    target: problem:document_processing_burden
+  - source: service:ai_workflow_analysis
+    type: SERVICE_ADDRESSES
+    target: problem:exception_heavy_accounting_work
+  - source: service:ai_transformation
+    type: SERVICE_ADDRESSES
+    target: problem:financial_decision_latency
+  - source: persona:business_owner
+    type: USES_SYSTEM
+    target: product:ai_cfo
+  - source: persona:cfo_finance_leader
+    type: USES_SYSTEM
+    target: product:ai_cfo
+  - source: persona:accounting_team
+    type: USES_SYSTEM
+    target: product:ca_automation
+  - source: persona:sales_marketing_team
+    type: USES_SYSTEM
+    target: product:lead_intelligence
+  - source: persona:exam_aspirant
+    type: USES_SYSTEM
+    target: product:examos
+  - source: persona:individual
+    type: USES_SYSTEM
+    target: product:selfos
+  - source: persona:cfo_finance_leader
+    type: DESIRES_OUTCOME
+    target: outcome:better_financial_decisions
+  - source: persona:business_owner
+    type: DESIRES_OUTCOME
+    target: outcome:better_financial_decisions
+  - source: persona:accounting_team
+    type: DESIRES_OUTCOME
+    target: outcome:reduced_manual_workload
+  - source: persona:sales_marketing_team
+    type: DESIRES_OUTCOME
+    target: outcome:improved_lead_follow_through
+  - source: persona:exam_aspirant
+    type: DESIRES_OUTCOME
+    target: outcome:personalized_exam_preparation
+  - source: persona:individual
+    type: DESIRES_OUTCOME
+    target: outcome:personalized_assistance
+  - source: outcome:reduced_manual_workload
+    type: MEASURED_BY
+    target: metric:hours_saved
+  - source: outcome:reduced_manual_workload
+    type: MEASURED_BY
+    target: metric:processing_time
+  - source: outcome:reduced_manual_workload
+    type: MEASURED_BY
+    target: metric:error_rate
+  - source: outcome:reduced_manual_workload
+    type: MEASURED_BY
+    target: metric:automation_rate
+  - source: outcome:better_financial_decisions
+    type: MEASURED_BY
+    target: metric:decision_latency
+  - source: outcome:improved_lead_follow_through
+    type: MEASURED_BY
+    target: metric:followup_completion_rate
+  - source: outcome:improved_lead_follow_through
+    type: MEASURED_BY
+    target: metric:conversion_rate
+  - source: outcome:personalized_exam_preparation
+    type: MEASURED_BY
+    target: metric:revision_performance
+  - source: outcome:better_contextual_decisions
+    type: MEASURED_BY
+    target: metric:context_retrieval_accuracy
+  - source: outcome:personalized_assistance
+    type: MEASURED_BY
+    target: metric:personalization_accuracy
+  - source: workflow:financial_review
+    type: EXPERIENCES
+    target: problem:financial_visibility
+  - source: workflow:management_decision_support
+    type: EXPERIENCES
+    target: problem:financial_decision_latency
+  - source: workflow:financial_analysis
+    type: EXPERIENCES
+    target: problem:fragmented_financial_information
+  - source: workflow:invoice_processing
+    type: EXPERIENCES
+    target: problem:document_processing_burden
+  - source: workflow:gst_reconciliation
+    type: EXPERIENCES
+    target: problem:manual_reconciliation
+  - source: workflow:tds_reconciliation
+    type: EXPERIENCES
+    target: problem:manual_reconciliation
+  - source: workflow:exception_review
+    type: EXPERIENCES
+    target: problem:exception_heavy_accounting_work
+  - source: workflow:lead_capture
+    type: EXPERIENCES
+    target: problem:lost_leads
+  - source: workflow:lead_qualification
+    type: EXPERIENCES
+    target: problem:manual_lead_qualification
+  - source: workflow:lead_routing
+    type: EXPERIENCES
+    target: problem:fragmented_lead_conversations
+  - source: workflow:lead_followup
+    type: EXPERIENCES
+    target: problem:followup_inconsistency
+  - source: workflow:study_planning
+    type: EXPERIENCES
+    target: problem:fragmented_exam_preparation
+  - source: workflow:practice
+    type: EXPERIENCES
+    target: problem:poor_personalization
+  - source: workflow:revision
+    type: EXPERIENCES
+    target: problem:revision_inefficiency
+  - source: workflow:assessment
+    type: EXPERIENCES
+    target: problem:poor_personalization
+  - source: workflow:goal_management
+    type: EXPERIENCES
+    target: problem:generic_ai_lacks_personal_context
+  - source: workflow:personal_knowledge_management
+    type: EXPERIENCES
+    target: problem:fragmented_personal_knowledge
+  - source: workflow:decision_support
+    type: EXPERIENCES
+    target: problem:decision_context_loss
+  - source: persona:business_owner
+    type: HAS_PROBLEM
+    target: problem:financial_decision_latency
+  - source: persona:cfo_finance_leader
+    type: HAS_PROBLEM
+    target: problem:financial_visibility
+  - source: persona:accounting_team
+    type: HAS_PROBLEM
+    target: problem:manual_reconciliation
+  - source: persona:sales_marketing_team
+    type: HAS_PROBLEM
+    target: problem:lost_leads
+  - source: persona:exam_aspirant
+    type: HAS_PROBLEM
+    target: problem:fragmented_exam_preparation
+  - source: persona:individual
+    type: HAS_PROBLEM
+    target: problem:generic_ai_lacks_personal_context
+  - source: persona:business_owner
+    type: PERFORMS_WORKFLOW
+    target: workflow:management_decision_support
+  - source: persona:cfo_finance_leader
+    type: PERFORMS_WORKFLOW
+    target: workflow:financial_review
+  - source: persona:accounting_team
+    type: PERFORMS_WORKFLOW
+    target: workflow:invoice_processing
+  - source: persona:sales_marketing_team
+    type: PERFORMS_WORKFLOW
+    target: workflow:lead_followup
+  - source: persona:exam_aspirant
+    type: PERFORMS_WORKFLOW
+    target: workflow:study_planning
+  - source: persona:individual
+    type: PERFORMS_WORKFLOW
+    target: workflow:personal_knowledge_management
+  - source: product:ai_cfo
+    type: PRODUCT_SOLVES
+    target: problem:financial_visibility
+  - source: product:ai_cfo
+    type: PRODUCT_SOLVES
+    target: problem:financial_decision_latency
+  - source: product:ai_cfo
+    type: PRODUCT_SOLVES
+    target: problem:fragmented_financial_information
+  - source: product:ca_automation
+    type: PRODUCT_SOLVES
+    target: problem:manual_reconciliation
+  - source: product:ca_automation
+    type: PRODUCT_SOLVES
+    target: problem:document_processing_burden
+  - source: product:ca_automation
+    type: PRODUCT_SOLVES
+    target: problem:exception_heavy_accounting_work
+  - source: product:lead_intelligence
+    type: PRODUCT_SOLVES
+    target: problem:fragmented_lead_conversations
+  - source: product:lead_intelligence
+    type: PRODUCT_SOLVES
+    target: problem:lost_leads
+  - source: product:lead_intelligence
+    type: PRODUCT_SOLVES
+    target: problem:manual_lead_qualification
+  - source: product:lead_intelligence
+    type: PRODUCT_SOLVES
+    target: problem:followup_inconsistency
+  - source: product:examos
+    type: PRODUCT_SOLVES
+    target: problem:fragmented_exam_preparation
+  - source: product:examos
+    type: PRODUCT_SOLVES
+    target: problem:poor_personalization
+  - source: product:examos
+    type: PRODUCT_SOLVES
+    target: problem:revision_inefficiency
+  - source: product:selfos
+    type: PRODUCT_SOLVES
+    target: problem:generic_ai_lacks_personal_context
+  - source: product:selfos
+    type: PRODUCT_SOLVES
+    target: problem:fragmented_personal_knowledge
+  - source: product:selfos
+    type: PRODUCT_SOLVES
+    target: problem:decision_context_loss
+  - source: product:ai_cfo
+    type: SUPPORTS_WORKFLOW
+    target: workflow:financial_review
+  - source: product:ai_cfo
+    type: SUPPORTS_WORKFLOW
+    target: workflow:management_decision_support
+  - source: product:ai_cfo
+    type: SUPPORTS_WORKFLOW
+    target: workflow:financial_analysis
+  - source: product:ca_automation
+    type: SUPPORTS_WORKFLOW
+    target: workflow:invoice_processing
+  - source: product:ca_automation
+    type: SUPPORTS_WORKFLOW
+    target: workflow:gst_reconciliation
+  - source: product:ca_automation
+    type: SUPPORTS_WORKFLOW
+    target: workflow:tds_reconciliation
+  - source: product:ca_automation
+    type: SUPPORTS_WORKFLOW
+    target: workflow:exception_review
+  - source: product:lead_intelligence
+    type: SUPPORTS_WORKFLOW
+    target: workflow:lead_capture
+  - source: product:lead_intelligence
+    type: SUPPORTS_WORKFLOW
+    target: workflow:lead_qualification
+  - source: product:lead_intelligence
+    type: SUPPORTS_WORKFLOW
+    target: workflow:lead_routing
+  - source: product:lead_intelligence
+    type: SUPPORTS_WORKFLOW
+    target: workflow:lead_followup
+  - source: product:examos
+    type: SUPPORTS_WORKFLOW
+    target: workflow:study_planning
+  - source: product:examos
+    type: SUPPORTS_WORKFLOW
+    target: workflow:practice
+  - source: product:examos
+    type: SUPPORTS_WORKFLOW
+    target: workflow:revision
+  - source: product:examos
+    type: SUPPORTS_WORKFLOW
+    target: workflow:assessment
+  - source: product:selfos
+    type: SUPPORTS_WORKFLOW
+    target: workflow:goal_management
+  - source: product:selfos
+    type: SUPPORTS_WORKFLOW
+    target: workflow:personal_knowledge_management
+  - source: product:selfos
+    type: SUPPORTS_WORKFLOW
+    target: workflow:decision_support
+  - source: data:transactions
+    type: ORIGINATES_FROM
+    target: source:erp
+  - source: data:financial_statements
+    type: ORIGINATES_FROM
+    target: source:accounting_software
+  - source: data:payments
+    type: ORIGINATES_FROM
+    target: source:api
+  - source: data:invoices
+    type: ORIGINATES_FROM
+    target: source:pdf
+  - source: data:vendor_records
+    type: IMPORTED_FROM
+    target: source:csv
+  - source: data:vendor_data
+    type: IMPORTED_FROM
+    target: source:csv
+  - source: data:gst_data
+    type: IMPORTED_FROM
+    target: source:accounting_software
+  - source: data:tds_data
+    type: IMPORTED_FROM
+    target: source:accounting_software
+  - source: data:reconciliation_records
+    type: ORIGINATES_FROM
+    target: source:erp
+  - source: data:whatsapp_conversations
+    type: RECEIVED_THROUGH
+    target: source:whatsapp
+  - source: data:instagram_conversations
+    type: RECEIVED_THROUGH
+    target: source:instagram
+  - source: data:messages
+    type: RECEIVED_THROUGH
+    target: source:api
+  - source: data:lead_profiles
+    type: SYNCHRONIZED_FROM
+    target: source:external_system
+  - source: data:intent_signals
+    type: DERIVES
+    target: data:whatsapp_conversations
+  - source: data:intent_signals
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:followup_history
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:syllabus
+    type: SYNCHRONIZED_FROM
+    target: source:database
+  - source: data:questions
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:answers
+    type: RECEIVED_THROUGH
+    target: source:user_input
+  - source: data:study_sessions
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:performance_data
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:knowledge_graph_nodes
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:goals
+    type: RECEIVED_THROUGH
+    target: source:user_input
+  - source: data:preferences
+    type: RECEIVED_THROUGH
+    target: source:user_input
+  - source: data:personal_knowledge
+    type: RECEIVED_THROUGH
+    target: source:user_input
+  - source: data:routines
+    type: ORIGINATES_FROM
+    target: source:api
+  - source: data:tasks
+    type: RECEIVED_THROUGH
+    target: source:user_input
+  - source: data:decisions
+    type: RECEIVED_THROUGH
+    target: source:user_input
+  - source: data:personal_context
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:invoices
+    type: RECEIVED_THROUGH
+    target: source:email
+  - source: data:invoices
+    type: RECEIVED_THROUGH
+    target: source:image
+  - source: cap:doc_intelligence
+    type: EXTRACTS_FROM
+    target: data:invoices
+  - source: cap:doc_intelligence
+    type: EXTRACTS_FROM
+    target: data:financial_statements
+  - source: cap:doc_intelligence
+    type: EXTRACTS_FROM
+    target: data:vendor_records
+  - source: cap:doc_intelligence
+    type: EXTRACTS_FROM
+    target: data:vendor_data
+  - source: cap:financial_reasoning
+    type: PROCESSES
+    target: data:transactions
+  - source: cap:financial_reasoning
+    type: PROCESSES
+    target: data:payments
+  - source: cap:financial_reasoning
+    type: PROCESSES
+    target: data:gst_data
+  - source: cap:financial_reasoning
+    type: PROCESSES
+    target: data:tds_data
+  - source: cap:financial_reasoning
+    type: PROCESSES
+    target: data:reconciliation_records
+  - source: cap:graph_intelligence
+    type: ENRICHES
+    target: data:transactions
+  - source: cap:conv_understanding
+    type: PROCESSES
+    target: data:whatsapp_conversations
+  - source: cap:conv_understanding
+    type: PROCESSES
+    target: data:instagram_conversations
+  - source: cap:conv_understanding
+    type: PROCESSES
+    target: data:messages
+  - source: cap:intent_detection
+    type: DERIVES
+    target: data:intent_signals
+  - source: cap:intent_detection
+    type: PROCESSES
+    target: data:lead_profiles
+  - source: cap:intent_detection
+    type: PROCESSES
+    target: data:followup_history
+  - source: cap:knowledge_graph
+    type: PROCESSES
+    target: data:syllabus
+  - source: cap:knowledge_graph
+    type: PROCESSES
+    target: data:questions
+  - source: cap:knowledge_graph
+    type: PROCESSES
+    target: data:answers
+  - source: cap:knowledge_graph
+    type: PROCESSES
+    target: data:study_sessions
+  - source: cap:knowledge_graph
+    type: PROCESSES
+    target: data:performance_data
+  - source: cap:knowledge_graph
+    type: PROCESSES
+    target: data:knowledge_graph_nodes
+  - source: cap:memory_context
+    type: PROCESSES
+    target: data:personal_knowledge
+  - source: cap:memory_context
+    type: PROCESSES
+    target: data:goals
+  - source: cap:memory_context
+    type: PROCESSES
+    target: data:preferences
+  - source: cap:memory_context
+    type: PROCESSES
+    target: data:routines
+  - source: cap:memory_context
+    type: PROCESSES
+    target: data:tasks
+  - source: cap:memory_context
+    type: PROCESSES
+    target: data:decisions
+  - source: cap:memory_context
+    type: PROCESSES
+    target: data:personal_context
+  - source: cap:financial_reasoning
+    type: INFORMS
+    target: decision:financial_management
+  - source: cap:document_validation
+    type: INFORMS
+    target: action:reconciliation_review
+  - source: cap:exception_handling
+    type: LEADS_TO
+    target: action:exception_escalation
+  - source: cap:intent_detection
+    type: INFORMS
+    target: action:lead_routing_action
+  - source: cap:conv_understanding
+    type: ENABLES
+    target: action:lead_followup_action
+  - source: cap:adaptive_learning
+    type: INFORMS
+    target: decision:study_plan_adjustment
+  - source: cap:personal_reasoning
+    type: INFORMS
+    target: decision:personal_priority
+  - source: decision:financial_management
+    type: LEADS_TO
+    target: outcome:better_financial_decisions
+  - source: action:reconciliation_review
+    type: LEADS_TO
+    target: outcome:reduced_manual_workload
+  - source: action:lead_followup_action
+    type: LEADS_TO
+    target: outcome:improved_lead_follow_through
+  - source: action:lead_routing_action
+    type: LEADS_TO
+    target: outcome:improved_lead_follow_through
+  - source: action:exception_escalation
+    type: LEADS_TO
+    target: outcome:reduced_manual_workload
+  - source: decision:study_plan_adjustment
+    type: LEADS_TO
+    target: outcome:personalized_exam_preparation
+  - source: decision:personal_priority
+    type: LEADS_TO
+    target: outcome:better_contextual_decisions
+  - source: product:ai_cfo
+    type: USES
+    target: cap:financial_reasoning
+  - source: product:ai_cfo
+    type: USES
+    target: cap:graph_intelligence
+  - source: product:ca_automation
+    type: USES
+    target: cap:doc_intelligence
+  - source: product:ca_automation
+    type: USES
+    target: cap:document_validation
+  - source: product:ca_automation
+    type: USES
+    target: cap:exception_handling
+  - source: product:lead_intelligence
+    type: USES
+    target: cap:conv_understanding
+  - source: product:lead_intelligence
+    type: USES
+    target: cap:intent_detection
+  - source: product:examos
+    type: USES
+    target: cap:knowledge_graph
+  - source: product:examos
+    type: USES
+    target: cap:adaptive_learning
+  - source: product:selfos
+    type: USES
+    target: cap:memory_context
+  - source: product:selfos
+    type: USES
+    target: cap:personal_reasoning
+  - source: method:understand
+    type: PROGRESSES_TO
+    target: method:deconstruct
+  - source: method:deconstruct
+    type: PROGRESSES_TO
+    target: method:design
+  - source: method:design
+    type: PROGRESSES_TO
+    target: method:build
+  - source: method:build
+    type: PROGRESSES_TO
+    target: method:validate
+  - source: method:validate
+    type: PROGRESSES_TO
+    target: method:deploy
+  - source: method:deploy
+    type: PROGRESSES_TO
+    target: method:measure
+  - source: method:measure
+    type: PROGRESSES_TO
+    target: method:learn
+  - source: method:learn
+    type: PROGRESSES_TO
+    target: method:improve
+  - source: method:improve
+    type: PROGRESSES_TO
+    target: method:understand
+  - source: journey:problem
+    type: PROGRESSES_TO
+    target: journey:current_state
+  - source: journey:current_state
+    type: PROGRESSES_TO
+    target: journey:workflow
+  - source: journey:workflow
+    type: PROGRESSES_TO
+    target: journey:friction
+  - source: journey:friction
+    type: PROGRESSES_TO
+    target: journey:ai_opportunity
+  - source: journey:ai_opportunity
+    type: PROGRESSES_TO
+    target: journey:system_design
+  - source: journey:system_design
+    type: PROGRESSES_TO
+    target: journey:prototype
+  - source: journey:prototype
+    type: PROGRESSES_TO
+    target: journey:implementation
+  - source: journey:implementation
+    type: PROGRESSES_TO
+    target: journey:integration
+  - source: journey:integration
+    type: PROGRESSES_TO
+    target: journey:measurement
+  - source: journey:measurement
+    type: PROGRESSES_TO
+    target: journey:iteration
+  - source: journey:iteration
+    type: PROGRESSES_TO
+    target: journey:problem

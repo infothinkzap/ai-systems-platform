@@ -1,0 +1,60 @@
+graph TD
+    %% ORGANIZATIONAL LAYER
+    subgraph Organization [Organizational Identity]
+        AS[Adarsh Singh Pawar] -->|FOUNDED_BY| TW[Terrawave]
+        RA[Rahul Arora] -->|FOUNDED_BY| TW
+        TW -->|SEPARATE_FROM| RS[Randomly Systematic]
+        TW -->|OPERATES_BY| PF[Problem First]
+    end
+
+    %% DOMAINS
+    subgraph Domains [Primary Domains]
+        BI[Business Intelligence]
+        KI[Knowledge Intelligence]
+        PI[Personal Intelligence]
+    end
+
+    %% PRODUCTS
+    subgraph Products [Systems & Products]
+        CFO[AI CFO] -->|BELONGS_TO| BI
+        CA[CA Automation] -->|BELONGS_TO| BI
+        LI[Lead Intelligence] -->|BELONGS_TO| BI
+        EX[ExamOS] -->|BELONGS_TO| KI
+        SO[SelfOS] -->|BELONGS_TO| PI
+    end
+
+    %% CAPABILITIES
+    subgraph Capabilities [Cognitive Layers]
+        UND[UNDERSTAND]
+        REA[REASON]
+        EXE[EXECUTE]
+        
+        DocInt[Document Intelligence] -->|BELONGS_TO_GROUP| UND
+        ConvInt[Conversation Understanding] -->|BELONGS_TO_GROUP| UND
+        
+        FinRea[Financial Reasoning] -->|BELONGS_TO_GROUP| REA
+        GraphInt[Graph Intelligence] -->|BELONGS_TO_GROUP| REA
+        Intent[Intent Detection] -->|BELONGS_TO_GROUP| REA
+    end
+
+    CFO -->|USES| FinRea
+    CFO -->|USES| GraphInt
+    CA -->|USES| DocInt
+    LI -->|USES| ConvInt
+    LI -->|USES| Intent
+
+    %% SERVICES
+    subgraph Services [Service Layer]
+        OppDisc[AI Opportunity Discovery]
+        SysDes[AI System Design]
+        AIInt[AI Integration]
+    end
+
+    %% CORE LOOP
+    subgraph Journey [Method & Journey]
+        direction LR
+        Prob[Problem] --> CS[Current State]
+        CS --> WF[Workflow]
+        WF --> Fric[Friction]
+        Fric --> AIO[AI Opportunity]
+    end
