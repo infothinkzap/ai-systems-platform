@@ -13,31 +13,47 @@
   --color-border: var(--border);
   --color-surface: var(--surface);
 
+  /* Phase 5D Semantic Colors */
+  --color-terra-deep: var(--terra-deep);
+  --color-terra-stone: var(--terra-stone);
+  --color-wave-emerald: var(--wave-emerald);
+  --color-wave-deep: var(--wave-deep);
+  --color-wave-mint: var(--wave-mint);
+
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+
+  --animate-signal-pulse: signal-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  --animate-signal-flow-x: signal-flow-x 3s linear infinite;
+  --animate-signal-flow-y: signal-flow-y 3s linear infinite;
 }
 
 /* 
   Terrawave Design System 
   Intelligent, technical, editorial, restrained.
-  Phase 5A: Light-first #F4F2EC
+  Phase 5D: Terra / Wave Visual Language
 */
 :root {
-  /* Warm/mineral paper background */
-  --background: #F4F2EC;
-  /* Deep graphite text */
-  --foreground: #17191B;
+  /* TERRA (Structure & Context) */
+  --background: #F4F2EC;         /* Primary Background */
+  --foreground: #17191B;         /* Graphite (Definitive text) */
+  --terra-deep: #17201C;         /* Deep Earth (Context/Transitions) */
+  --terra-stone: #D8D5CC;        /* Structural Stone (Inactive) */
+
+  /* WAVE (Signal & Intelligence) */
+  --wave-emerald: #0E9F6E;       /* Terrawave Emerald (Active Intelligence) */
+  --wave-deep: #087F5B;          /* Deep Emerald (Resolved operations) */
+  --accent: #3FAF9B;             /* Signal Green (Live signals/motion) */
+  --wave-mint: #DDEFE8;          /* Pale Mint (Traces/hybrid paths) */
 
   /* Neutral secondary tones */
   --muted: #E8E6E0;
   --muted-foreground: #6b6a67;
 
-  /* Signature accent: Sea-glass / signal green */
-  --accent: #3FAF9B;
   --accent-foreground: #ffffff;
 
   /* Subtle neutral grey for graph lines */
-  --border: #D8D6D0;
+  --border: var(--terra-stone);
   --surface: #ffffff;
 }
 
@@ -56,21 +72,32 @@ body {
   }
 }
 
-@keyframes flow-horizontal {
+/* Signal Animations */
+@keyframes signal-pulse {
+  0%, 100% { opacity: 1; }
+  50% { opacity: .5; }
+}
+
+@keyframes signal-flow-x {
   0% { transform: translateX(-100%); opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
   100% { transform: translateX(500px); opacity: 0; }
 }
 
-@keyframes flow-vertical {
+@keyframes signal-flow-y {
   0% { transform: translateY(-100%); opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
   100% { transform: translateY(500px); opacity: 0; }
 }
 
-@theme {
-  --animate-flow-horizontal: flow-horizontal 3s linear infinite;
-  --animate-flow-vertical: flow-vertical 3s linear infinite;
+/* Respect prefers-reduced-motion */
+@media (prefers-reduced-motion: reduce) {
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }

@@ -54,7 +54,7 @@ To prevent graph bloat and maintain clarity, use only these relationships when e
 | :--- | :--- | :--- |
 | `EXTRACTS_FROM` | A capability pulls structured data from an unstructured/semi-structured primitive. | Document Intelligence `EXTRACTS_FROM` Invoice |
 | `TRANSFORMS` | A capability changes the structure or format of a primitive. | Conversation Intelligence `TRANSFORMS` WhatsApp Chat |
-| `PROCESSES` | A general relationship indicating data flows through a capability. | Adaptive Planning `PROCESSES` Performance Data |
+| `PROCESSES` | A general relationship indicating data flows through a capability or workflow. | Inventory Management `PROCESSES` Inventory Records |
 | `ENRICHES` | Adding metadata or context to a primitive. | Graph Intelligence `ENRICHES` Transactions |
 | `VALIDATES` | Checking correctness against rules. | Deterministic Layer `VALIDATES` Extracted GST |
 | `DERIVES` | Generating new conclusions from existing data. | Intent Detection `DERIVES` Lead Qualification |

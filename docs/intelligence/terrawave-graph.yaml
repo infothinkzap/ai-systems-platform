@@ -97,14 +97,17 @@ entities:
     evidence:
       - internal_reasoning
       - prototype_evidence
+    offering_mode: reusable_system
   - id: product:ca_automation
     type: Product
     name: CA Automation
-    maturity_status: building
+    maturity_status: deployed
     epistemic_status: designed
     evidence:
       - internal_reasoning
       - prototype_evidence
+    deployment_scope: limited_capacity
+    offering_mode: reusable_system
   - id: product:lead_intelligence
     type: Product
     name: Lead Intelligence
@@ -113,6 +116,7 @@ entities:
     evidence:
       - prototype_evidence
       - experiment
+    offering_mode: reusable_system
   - id: product:examos
     type: Product
     name: ExamOS
@@ -120,6 +124,7 @@ entities:
     epistemic_status: hypothesis
     evidence:
       - internal_reasoning
+    offering_mode: exploratory_system
   - id: product:selfos
     type: Product
     name: SelfOS
@@ -127,6 +132,7 @@ entities:
     epistemic_status: hypothesis
     evidence:
       - internal_reasoning
+    offering_mode: exploratory_system
   - id: service:ai_opportunity_discovery
     type: Service
     name: AI Opportunity Discovery
@@ -517,6 +523,53 @@ entities:
   - id: journey:iteration
     type: JourneyStep
     name: Iteration
+  - id: product:manaswini_operations
+    type: Product
+    name: Manaswini Designer Studio Operations System
+    maturity_status: deployed
+    offering_mode: applied_system
+  - id: persona:store_staff
+    type: Persona
+    name: Store Staff
+  - id: problem:fragmented_store_operations
+    type: Problem
+    name: Fragmented Store Operations
+  - id: problem:manual_inventory_tracking
+    type: Problem
+    name: Manual Inventory Tracking
+  - id: workflow:inventory_management
+    type: Workflow
+    name: Inventory Management
+  - id: workflow:tailoring_operations
+    type: Workflow
+    name: Tailoring Operations
+  - id: workflow:billing_and_invoicing
+    type: Workflow
+    name: Billing and Invoicing
+  - id: data:inventory_records
+    type: DataPrimitive
+    name: inventory records
+  - id: data:product_barcodes
+    type: DataPrimitive
+    name: product barcodes
+  - id: data:tailoring_orders
+    type: DataPrimitive
+    name: tailoring orders
+  - id: data:dues_records
+    type: DataPrimitive
+    name: dues records
+  - id: data:expense_records
+    type: DataPrimitive
+    name: expense records
+  - id: workflow:expense_management
+    type: Workflow
+    name: Expense Management
+  - id: workflow:store_operations
+    type: Workflow
+    name: Store Operations
+  - id: data:operational_records
+    type: DataPrimitive
+    name: operational records
 relationships:
   - source: org:terrawave
     type: FOUNDED_BY
@@ -1190,3 +1243,111 @@ relationships:
   - source: journey:iteration
     type: PROGRESSES_TO
     target: journey:problem
+  - source: product:manaswini_operations
+    type: BELONGS_TO
+    target: domain:business_intelligence
+  - source: product:manaswini_operations
+    type: PRODUCT_SOLVES
+    target: problem:fragmented_store_operations
+  - source: product:manaswini_operations
+    type: PRODUCT_SOLVES
+    target: problem:manual_inventory_tracking
+  - source: product:manaswini_operations
+    type: SUPPORTS_WORKFLOW
+    target: workflow:inventory_management
+  - source: product:manaswini_operations
+    type: SUPPORTS_WORKFLOW
+    target: workflow:tailoring_operations
+  - source: product:manaswini_operations
+    type: SUPPORTS_WORKFLOW
+    target: workflow:billing_and_invoicing
+  - source: product:manaswini_operations
+    type: SUPPORTS_WORKFLOW
+    target: workflow:expense_management
+  - source: product:manaswini_operations
+    type: SUPPORTS_WORKFLOW
+    target: workflow:store_operations
+  - source: persona:store_staff
+    type: USES_SYSTEM
+    target: product:manaswini_operations
+  - source: persona:store_staff
+    type: HAS_PROBLEM
+    target: problem:manual_inventory_tracking
+  - source: persona:business_owner
+    type: HAS_PROBLEM
+    target: problem:fragmented_store_operations
+  - source: persona:store_staff
+    type: PERFORMS_WORKFLOW
+    target: workflow:inventory_management
+  - source: persona:store_staff
+    type: PERFORMS_WORKFLOW
+    target: workflow:tailoring_operations
+  - source: persona:store_staff
+    type: PERFORMS_WORKFLOW
+    target: workflow:billing_and_invoicing
+  - source: persona:store_staff
+    type: PERFORMS_WORKFLOW
+    target: workflow:expense_management
+  - source: persona:store_staff
+    type: PERFORMS_WORKFLOW
+    target: workflow:store_operations
+  - source: workflow:inventory_management
+    type: EXPERIENCES
+    target: problem:manual_inventory_tracking
+  - source: workflow:tailoring_operations
+    type: EXPERIENCES
+    target: problem:fragmented_store_operations
+  - source: workflow:billing_and_invoicing
+    type: EXPERIENCES
+    target: problem:fragmented_store_operations
+  - source: workflow:expense_management
+    type: EXPERIENCES
+    target: problem:fragmented_store_operations
+  - source: workflow:store_operations
+    type: EXPERIENCES
+    target: problem:fragmented_store_operations
+  - source: data:inventory_records
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:product_barcodes
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:tailoring_orders
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:dues_records
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:expense_records
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: data:operational_records
+    type: ORIGINATES_FROM
+    target: source:database
+  - source: persona:store_staff
+    type: DESIRES_OUTCOME
+    target: outcome:reduced_manual_workload
+  - source: workflow:inventory_management
+    type: PROCESSES
+    target: data:inventory_records
+  - source: workflow:inventory_management
+    type: PROCESSES
+    target: data:product_barcodes
+  - source: workflow:billing_and_invoicing
+    type: PROCESSES
+    target: data:invoices
+  - source: workflow:billing_and_invoicing
+    type: PROCESSES
+    target: data:dues_records
+  - source: workflow:billing_and_invoicing
+    type: PROCESSES
+    target: data:gst_data
+  - source: workflow:tailoring_operations
+    type: PROCESSES
+    target: data:tailoring_orders
+  - source: workflow:expense_management
+    type: PROCESSES
+    target: data:expense_records
+  - source: workflow:store_operations
+    type: PROCESSES
+    target: data:operational_records

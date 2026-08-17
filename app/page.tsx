@@ -5,9 +5,12 @@ import { StructuralLine } from "@/components/ui/StructuralLine";
 import { MonoLabel } from "@/components/ui/MonoLabel";
 import { JourneyFlow } from "@/components/graph/JourneyFlow";
 import { CapabilityGroup } from "@/components/graph/CapabilityGroup";
-import { SystemNode } from "@/components/graph/SystemNode";
+import { SystemObject } from "@/components/visual/SystemObject";
+import { TerrawaveSignal } from "@/components/visual/TerrawaveSignal";
 import { DiscoveryPrototype } from "@/components/interactive/DiscoveryPrototype";
+import { InteractiveSequence } from "@/components/interactive/InteractiveSequence";
 import { NeedMatrix } from "@/components/interactive/NeedMatrix";
+import Link from "next/link";
 import { ProductEntity } from "@/lib/graph/types";
 
 export default function Home() {
@@ -29,12 +32,13 @@ export default function Home() {
               THE STARTING POINT.
             </h1>
             <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-accent mb-16">
-              THE PROBLEM IS.
+              THE SYSTEM IS.
             </h1>
             <StructuralLine animated className="max-w-md" />
             <p className="mt-16 text-xl md:text-2xl text-muted-foreground text-balance max-w-2xl leading-relaxed">
-              Terrawave builds rigorous AI systems grounded in deterministic architecture. We do not insert AI because it is possible; we integrate intelligence where it creates structural leverage.
+              Terrawave designs and builds intelligent systems around real-world business problems — deciding deliberately where software, deterministic logic, AI and human judgment belong.
             </p>
+            <InteractiveSequence />
           </div>
         </Container>
       </section>
@@ -64,6 +68,40 @@ export default function Home() {
         </Container>
       </section>
 
+      {/* 2.5 TERRA / WAVE Concept Section */}
+      <section className="py-32 bg-terra-deep text-background relative overflow-hidden">
+        <div className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 z-0 opacity-30">
+          <TerrawaveSignal state="active" animated={true} />
+        </div>
+        <Container>
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-24 relative z-10">
+            <div>
+              <MonoLabel variant="muted" className="mb-6 opacity-70">TERRA</MonoLabel>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 leading-tight">
+                The world as it exists.
+              </h2>
+              <p className="text-lg opacity-80 leading-relaxed max-w-md">
+                Businesses, people, deterministic workflows, structured data, and unyielding constraints. The foundation of any real operation.
+              </p>
+            </div>
+            <div>
+              <MonoLabel variant="accent" className="mb-6">WAVE</MonoLabel>
+              <h2 className="text-3xl md:text-4xl font-medium mb-6 leading-tight text-wave-mint">
+                The movement of intelligence.
+              </h2>
+              <p className="text-lg opacity-80 leading-relaxed max-w-md">
+                Active signals, cognitive capabilities, and transformative decisions routing through the structural reality to create leverage.
+              </p>
+            </div>
+          </div>
+          <div className="mt-24 text-center relative z-10">
+            <h3 className="text-2xl md:text-3xl font-medium font-serif italic text-wave-mint/90">
+              &quot;Terrawave builds systems that move intelligence to where it creates leverage.&quot;
+            </h3>
+          </div>
+        </Container>
+      </section>
+
       {/* 3. Capabilities */}
       <section id="build" className="py-24 border-t border-border bg-white">
         <Container>
@@ -88,20 +126,68 @@ export default function Home() {
       {/* 4. Systems */}
       <section id="explore" className="py-24 border-t border-border">
         <Container>
-          <div className="mb-16">
-            <MonoLabel dot>Applied Systems</MonoLabel>
-            <h2 className="text-3xl mt-4 font-medium">Architectural Implementations</h2>
-            <p className="mt-4 text-muted-foreground max-w-2xl">
-              Examples of the Terrawave systems philosophy in practice. These are not generic SaaS products, but deeply integrated intellectual engines.
-            </p>
+          <div className="mb-16 flex items-center justify-between">
+            <div>
+              <MonoLabel dot>System Portfolio</MonoLabel>
+              <h2 className="text-3xl mt-4 font-medium">Architectural Implementations</h2>
+              <p className="mt-4 text-muted-foreground max-w-2xl">
+                Examples of the Terrawave systems philosophy in practice. These are not generic SaaS products, but deeply integrated intellectual engines.
+              </p>
+            </div>
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {systems.map(sys => {
-              const sysCaps = capabilities.filter(cap => 
-                graph.relationships.some(r => r.source === sys.id && r.target === cap.id && r.type === "USES")
-              );
-              return <SystemNode key={sys.id} system={sys} capabilities={sysCaps} />;
-            })}
+          
+          <div className="flex flex-col gap-16">
+            <div>
+              <MonoLabel variant="accent" className="mb-8">APPLIED SYSTEM</MonoLabel>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {systems.filter(s => s.offering_mode === "applied_system").map(sys => {
+                  const sysCaps = capabilities.filter(cap => 
+                    graph.relationships.some(r => r.source === sys.id && r.target === cap.id && r.type === "USES")
+                  );
+                  return (
+                    <Link key={sys.id} href={`/systems/${sys.id.replace("product:", "")}`} className="block group">
+                      <SystemObject system={sys} capabilities={sysCaps} isHovered={false} className="group-hover:border-foreground" />
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            <StructuralLine />
+
+            <div>
+              <MonoLabel className="mb-8">REUSABLE SYSTEMS</MonoLabel>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {systems.filter(s => s.offering_mode === "reusable_system").map(sys => {
+                  const sysCaps = capabilities.filter(cap => 
+                    graph.relationships.some(r => r.source === sys.id && r.target === cap.id && r.type === "USES")
+                  );
+                  return (
+                    <Link key={sys.id} href={`/systems/${sys.id.replace("product:", "")}`} className="block group">
+                      <SystemObject system={sys} capabilities={sysCaps} isHovered={false} className="group-hover:border-foreground" />
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+
+            <StructuralLine />
+
+            <div>
+              <MonoLabel variant="muted" className="mb-8">EXPLORATORY SYSTEMS</MonoLabel>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+                {systems.filter(s => s.offering_mode === "exploratory_system").map(sys => {
+                  const sysCaps = capabilities.filter(cap => 
+                    graph.relationships.some(r => r.source === sys.id && r.target === cap.id && r.type === "USES")
+                  );
+                  return (
+                    <Link key={sys.id} href={`/systems/${sys.id.replace("product:", "")}`} className="block group opacity-70 hover:opacity-100 transition-opacity">
+                      <SystemObject system={sys} capabilities={sysCaps} isHovered={false} className="group-hover:border-foreground" />
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
           </div>
         </Container>
       </section>
@@ -143,12 +229,22 @@ export default function Home() {
             </div>
             <div className="grid grid-cols-2 gap-8">
               <div className="flex flex-col gap-4">
-                <div className="aspect-square bg-muted w-full" />
-                <MonoLabel>Adarsh Singh Pawar</MonoLabel>
+                <div className="aspect-square bg-[#E8E6DF] border border-border w-full flex items-center justify-center text-muted-foreground">
+                  <span className="font-mono text-sm uppercase tracking-widest">[Photograph]</span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <MonoLabel>Adarsh Singh Pawar</MonoLabel>
+                  <span className="text-sm text-muted-foreground">Co-founder</span>
+                </div>
               </div>
               <div className="flex flex-col gap-4">
-                <div className="aspect-square bg-muted w-full" />
-                <MonoLabel>Rahul Arora</MonoLabel>
+                <div className="aspect-square bg-[#E8E6DF] border border-border w-full flex items-center justify-center text-muted-foreground">
+                  <span className="font-mono text-sm uppercase tracking-widest">[Photograph]</span>
+                </div>
+                <div className="flex flex-col gap-1">
+                  <MonoLabel>Rahul Arora</MonoLabel>
+                  <span className="text-sm text-muted-foreground">Co-founder</span>
+                </div>
               </div>
             </div>
           </div>

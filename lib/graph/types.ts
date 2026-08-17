@@ -19,9 +19,10 @@ export type EntityType =
   | "MethodStep"
   | "JourneyStep";
 
-export type MaturityStatus = "concept" | "building" | "prototype" | "production";
+export type MaturityStatus = "concept" | "building" | "prototype" | "deployed" | "production";
 export type EpistemicStatus = "hypothesis" | "designed" | "tested" | "established";
 export type EvidenceType = "internal_reasoning" | "prototype_evidence" | "experiment" | "client_case";
+export type OfferingMode = "reusable_system" | "applied_system" | "exploratory_system" | "service";
 
 export interface BaseEntity {
   id: string;
@@ -35,6 +36,8 @@ export interface ProductEntity extends BaseEntity {
   maturity_status?: MaturityStatus;
   epistemic_status?: EpistemicStatus;
   evidence?: EvidenceType[];
+  deployment_scope?: "limited_capacity" | "full_capacity";
+  offering_mode?: OfferingMode;
 }
 
 export interface CorePhilosophyEntity extends BaseEntity {

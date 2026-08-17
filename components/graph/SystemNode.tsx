@@ -17,12 +17,16 @@ export function SystemNode({ system, capabilities }: SystemNodeProps) {
         </div>
         <div className="flex flex-col items-end gap-2 text-right">
           {system.maturity_status && (
-            <MonoLabel dot variant={system.maturity_status === "production" ? "accent" : "default"}>
-              {system.maturity_status}
+            <MonoLabel dot variant={system.maturity_status === "deployed" ? "accent" : "default"}>
+              {system.maturity_status.toUpperCase()}
+              {system.deployment_scope ? ` — ${system.deployment_scope.replace("_", " ").toUpperCase()}` : ""}
             </MonoLabel>
           )}
+          {system.offering_mode && (
+            <MonoLabel variant="muted">{system.offering_mode.replace("_", " ").toUpperCase()}</MonoLabel>
+          )}
           {system.epistemic_status && (
-            <MonoLabel variant="muted">{system.epistemic_status}</MonoLabel>
+            <MonoLabel variant="muted">{system.epistemic_status.toUpperCase()}</MonoLabel>
           )}
         </div>
       </div>
