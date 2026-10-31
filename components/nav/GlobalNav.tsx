@@ -1,28 +1,26 @@
 import Link from "next/link";
-import { Container } from "../ui/Container";
+import { BrandLogo } from "@/components/brand/BrandLogo";
 
 export function GlobalNav() {
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-border bg-background/80 backdrop-blur-sm">
-      <Container className="flex h-16 items-center justify-between">
-        <Link href="/" className="font-mono text-sm tracking-widest uppercase font-semibold">
-          Terrawave
+    <header className="studio-nav">
+      <div className="tw-wrap studio-nav-inner">
+        <Link href="/" aria-label="Terrawave home" className="brand-link">
+          <BrandLogo />
         </Link>
-        <nav className="flex items-center gap-8">
-          <Link href="#think" className="font-mono text-xs tracking-widest text-muted-foreground hover:text-foreground transition-colors uppercase">
-            Think
+        <span className="nav-studio">Independent thinking.<br />Connected systems.</span>
+        <nav aria-label="Main navigation">
+          <Link href="/systems" className="nav-work">
+            Explore work
           </Link>
-          <Link href="#build" className="font-mono text-xs tracking-widest text-muted-foreground hover:text-foreground transition-colors uppercase">
-            Build
+          <Link href="/#founders" className="nav-people">
+            People
           </Link>
-          <Link href="#explore" className="font-mono text-xs tracking-widest text-muted-foreground hover:text-foreground transition-colors uppercase">
-            Explore
-          </Link>
-          <Link href="#discover" className="font-mono text-xs tracking-widest text-accent hover:text-accent/80 transition-colors uppercase">
-            Discover
+          <Link href="/think" className="nav-discovery">
+            Map a problem <span aria-hidden="true">↗</span>
           </Link>
         </nav>
-      </Container>
+      </div>
     </header>
   );
 }

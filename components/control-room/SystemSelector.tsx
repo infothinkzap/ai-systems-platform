@@ -15,6 +15,7 @@ export function SystemSelector({ systems, activeId, onChange }: SystemSelectorPr
   return (
     <div className="flex flex-col gap-2">
       <select 
+        aria-label="Choose a system to explore"
         className="bg-transparent border border-foreground/20 px-4 py-2 text-foreground focus:outline-none focus:ring-1 focus:ring-accent w-64 uppercase tracking-widest text-xs font-mono"
         value={activeId}
         onChange={(e) => onChange(e.target.value)}

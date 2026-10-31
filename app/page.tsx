@@ -1,262 +1,37 @@
-import { getEntitiesByType, getGraph } from "@/lib/graph/queries";
-import { Container } from "@/components/ui/Container";
-import { GlobalNav } from "@/components/nav/GlobalNav";
-import { StructuralLine } from "@/components/ui/StructuralLine";
-import { MonoLabel } from "@/components/ui/MonoLabel";
-import { JourneyFlow } from "@/components/graph/JourneyFlow";
-import { CapabilityGroup } from "@/components/graph/CapabilityGroup";
-import { SystemObject } from "@/components/visual/SystemObject";
-import { TerrawaveSignal } from "@/components/visual/TerrawaveSignal";
-import { DiscoveryPrototype } from "@/components/interactive/DiscoveryPrototype";
-import { InteractiveSequence } from "@/components/interactive/InteractiveSequence";
-import { NeedMatrix } from "@/components/interactive/NeedMatrix";
 import Link from "next/link";
-import { ProductEntity } from "@/lib/graph/types";
+import Image from "next/image";
+import { getGraph } from "@/lib/graph/queries";
+import { GlobalNav } from "@/components/nav/GlobalNav";
+import { WorkCollection } from "@/components/work/WorkCollection";
+import { workItems } from "@/lib/work";
+import { BrandLogo, WaveMark } from "@/components/brand/BrandLogo";
+import { SystemSculpture } from "@/components/brand/SystemSculpture";
+import { StudioMotion } from "@/components/brand/StudioMotion";
 
 export default function Home() {
   const graph = getGraph();
-  const capGroups = getEntitiesByType("CapabilityGroup");
-  const capabilities = getEntitiesByType("Capability");
-  const systems = getEntitiesByType("Product") as ProductEntity[];
-
-  return (
-    <div className="flex min-h-screen flex-col selection:bg-accent/20">
-      <GlobalNav />
-
-      {/* 1. Opening Proposition */}
-      <section id="think" className="pt-32 pb-24 md:pt-48 md:pb-32">
-        <Container>
-          <div className="max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-balance leading-tight mb-8">
-              AI IS NOT<br />
-              THE STARTING POINT.
-            </h1>
-            <h1 className="text-4xl md:text-6xl font-medium tracking-tight text-accent mb-16">
-              THE SYSTEM IS.
-            </h1>
-            <StructuralLine animated className="max-w-md" />
-            <p className="mt-16 text-xl md:text-2xl text-muted-foreground text-balance max-w-2xl leading-relaxed">
-              Terrawave designs and builds intelligent systems around real-world business problems — deciding deliberately where software, deterministic logic, AI and human judgment belong.
-            </p>
-            <InteractiveSequence />
-          </div>
-        </Container>
-      </section>
-
-      {/* 2. The Graph Engine & Methodology */}
-      <section className="py-24 border-t border-border">
-        <Container>
-          <div className="mb-16">
-            <MonoLabel dot>The Architecture of a Problem</MonoLabel>
-            <h2 className="text-3xl mt-4 font-medium">How Terrawave Thinks</h2>
-          </div>
-          <JourneyFlow />
-          <div className="mt-16 grid grid-cols-1 md:grid-cols-2 gap-12">
-            <div>
-              <h3 className="text-xl font-medium mb-4">Not every repetitive task needs AI.</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                Sometimes the expensive part of a workflow is judgment. Sometimes an AI problem is actually a data architecture problem. Automation is not the same thing as intelligence.
-              </p>
-            </div>
-            <div>
-              <h3 className="text-xl font-medium mb-4">AI should not replace judgment blindly.</h3>
-              <p className="text-muted-foreground leading-relaxed">
-                The question is not where AI can be inserted. The question is where intelligence creates useful leverage, while maintaining human accountability.
-              </p>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* 2.5 TERRA / WAVE Concept Section */}
-      <section className="py-32 bg-terra-deep text-background relative overflow-hidden">
-        <div className="absolute top-1/2 left-0 right-0 h-[2px] -translate-y-1/2 z-0 opacity-30">
-          <TerrawaveSignal state="active" animated={true} />
-        </div>
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-24 relative z-10">
-            <div>
-              <MonoLabel variant="muted" className="mb-6 opacity-70">TERRA</MonoLabel>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 leading-tight">
-                The world as it exists.
-              </h2>
-              <p className="text-lg opacity-80 leading-relaxed max-w-md">
-                Businesses, people, deterministic workflows, structured data, and unyielding constraints. The foundation of any real operation.
-              </p>
-            </div>
-            <div>
-              <MonoLabel variant="accent" className="mb-6">WAVE</MonoLabel>
-              <h2 className="text-3xl md:text-4xl font-medium mb-6 leading-tight text-wave-mint">
-                The movement of intelligence.
-              </h2>
-              <p className="text-lg opacity-80 leading-relaxed max-w-md">
-                Active signals, cognitive capabilities, and transformative decisions routing through the structural reality to create leverage.
-              </p>
-            </div>
-          </div>
-          <div className="mt-24 text-center relative z-10">
-            <h3 className="text-2xl md:text-3xl font-medium font-serif italic text-wave-mint/90">
-              &quot;Terrawave builds systems that move intelligence to where it creates leverage.&quot;
-            </h3>
-          </div>
-        </Container>
-      </section>
-
-      {/* 3. Capabilities */}
-      <section id="build" className="py-24 border-t border-border bg-white">
-        <Container>
-          <div className="mb-16">
-            <MonoLabel dot>Cognitive Capabilities</MonoLabel>
-            <h2 className="text-3xl mt-4 font-medium">Intelligence Primitives</h2>
-            <p className="mt-4 text-muted-foreground max-w-2xl">
-              We decompose intelligence into specific, measurable capabilities that operate on structured data.
-            </p>
-          </div>
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-            {capGroups.map(group => {
-              const groupCaps = capabilities.filter(cap => 
-                graph.relationships.some(r => r.source === cap.id && r.target === group.id && r.type === "CAPABILITY_BELONGS_TO_GROUP")
-              );
-              return <CapabilityGroup key={group.id} name={group.name} capabilities={groupCaps} />;
-            })}
-          </div>
-        </Container>
-      </section>
-
-      {/* 4. Systems */}
-      <section id="explore" className="py-24 border-t border-border">
-        <Container>
-          <div className="mb-16 flex items-center justify-between">
-            <div>
-              <MonoLabel dot>System Portfolio</MonoLabel>
-              <h2 className="text-3xl mt-4 font-medium">Architectural Implementations</h2>
-              <p className="mt-4 text-muted-foreground max-w-2xl">
-                Examples of the Terrawave systems philosophy in practice. These are not generic SaaS products, but deeply integrated intellectual engines.
-              </p>
-            </div>
-          </div>
-          
-          <div className="flex flex-col gap-16">
-            <div>
-              <MonoLabel variant="accent" className="mb-8">APPLIED SYSTEM</MonoLabel>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {systems.filter(s => s.offering_mode === "applied_system").map(sys => {
-                  const sysCaps = capabilities.filter(cap => 
-                    graph.relationships.some(r => r.source === sys.id && r.target === cap.id && r.type === "USES")
-                  );
-                  return (
-                    <Link key={sys.id} href={`/systems/${sys.id.replace("product:", "")}`} className="block group">
-                      <SystemObject system={sys} capabilities={sysCaps} isHovered={false} className="group-hover:border-foreground" />
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            <StructuralLine />
-
-            <div>
-              <MonoLabel className="mb-8">REUSABLE SYSTEMS</MonoLabel>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {systems.filter(s => s.offering_mode === "reusable_system").map(sys => {
-                  const sysCaps = capabilities.filter(cap => 
-                    graph.relationships.some(r => r.source === sys.id && r.target === cap.id && r.type === "USES")
-                  );
-                  return (
-                    <Link key={sys.id} href={`/systems/${sys.id.replace("product:", "")}`} className="block group">
-                      <SystemObject system={sys} capabilities={sysCaps} isHovered={false} className="group-hover:border-foreground" />
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-
-            <StructuralLine />
-
-            <div>
-              <MonoLabel variant="muted" className="mb-8">EXPLORATORY SYSTEMS</MonoLabel>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-                {systems.filter(s => s.offering_mode === "exploratory_system").map(sys => {
-                  const sysCaps = capabilities.filter(cap => 
-                    graph.relationships.some(r => r.source === sys.id && r.target === cap.id && r.type === "USES")
-                  );
-                  return (
-                    <Link key={sys.id} href={`/systems/${sys.id.replace("product:", "")}`} className="block group opacity-70 hover:opacity-100 transition-opacity">
-                      <SystemObject system={sys} capabilities={sysCaps} isHovered={false} className="group-hover:border-foreground" />
-                    </Link>
-                  );
-                })}
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* 6. Conceptual Matrix */}
-      <section className="py-24 border-t border-border bg-white">
-        <Container>
-          <div className="max-w-3xl mx-auto">
-            <NeedMatrix />
-          </div>
-        </Container>
-      </section>
-
-      {/* 8. Discovery Prototype */}
-      <section id="discover" className="py-32 border-t border-border bg-foreground text-background">
-        <Container>
-          <div className="mb-16 text-center">
-            <h2 className="text-3xl font-medium mb-4">Discover Where AI Fits</h2>
-            <p className="text-muted max-w-2xl mx-auto">
-              Map a specific workflow friction point to determine if it is a structural AI opportunity.
-            </p>
-          </div>
-          <div className="text-foreground">
-            <DiscoveryPrototype />
-          </div>
-        </Container>
-      </section>
-
-      {/* 7. Founders */}
-      <section className="py-24 border-t border-border bg-white">
-        <Container>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-16 items-center">
-            <div>
-              <MonoLabel dot className="mb-6">The Partnership</MonoLabel>
-              <h2 className="text-3xl font-medium mb-6">Building and thinking about systems.</h2>
-              <p className="text-muted-foreground leading-relaxed">
-                Terrawave is a dedicated partnership project focused entirely on solving operational friction through problem-first intelligence architectures.
-              </p>
-            </div>
-            <div className="grid grid-cols-2 gap-8">
-              <div className="flex flex-col gap-4">
-                <div className="aspect-square bg-[#E8E6DF] border border-border w-full flex items-center justify-center text-muted-foreground">
-                  <span className="font-mono text-sm uppercase tracking-widest">[Photograph]</span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <MonoLabel>Adarsh Singh Pawar</MonoLabel>
-                  <span className="text-sm text-muted-foreground">Co-founder</span>
-                </div>
-              </div>
-              <div className="flex flex-col gap-4">
-                <div className="aspect-square bg-[#E8E6DF] border border-border w-full flex items-center justify-center text-muted-foreground">
-                  <span className="font-mono text-sm uppercase tracking-widest">[Photograph]</span>
-                </div>
-                <div className="flex flex-col gap-1">
-                  <MonoLabel>Rahul Arora</MonoLabel>
-                  <span className="text-sm text-muted-foreground">Co-founder</span>
-                </div>
-              </div>
-            </div>
-          </div>
-        </Container>
-      </section>
-
-      {/* Footer */}
-      <footer className="py-12 border-t border-border text-center">
-        <Container>
-          <MonoLabel variant="muted">© {new Date().getFullYear()} Terrawave. All rights reserved.</MonoLabel>
-        </Container>
-      </footer>
-    </div>
-  );
+  const founders = [{ id: "person:adarsh_singh_pawar", photo: "Adarsh" }, { id: "person:rahul_arora", photo: "Rahul" }];
+  return <div className="tw-home">
+    <GlobalNav />
+    <StudioMotion />
+    <main>
+    <section className="hero tw-wrap">
+      <div className="hero-topline"><p className="eyebrow"><span className="signal-dot" /> SYSTEM FIRST, AI SECOND.</p><span className="eyebrow">TERRAWAVE / SYSTEMS STUDIO</span></div>
+      <div className="hero-grid"><div className="hero-copy"><p className="hero-kicker">SOFTWARE. SYSTEMS. APPROPRIATE INTELLIGENCE.</p><h1>Better systems.<br /><span>Clearer</span><br /><span>decisions.</span></h1><p className="hero-description">We build software around how your business works—connecting information, simplifying workflows and putting AI where it helps.</p><div className="hero-paths"><Link className="tw-button" href="/systems">Explore our work <span aria-hidden="true">↗</span></Link><Link className="tw-button tw-button-outline" href="/think">Map your problem <span aria-hidden="true">↗</span></Link></div><p className="hero-footnote"><span className="footnote-line" /> A clear starting point. An open conversation.</p></div>
+        <SystemSculpture />
+      </div>
+      <div className="hero-index"><span><i>01</i> UNDERSTAND THE PROBLEM</span><span><i>02</i> REVEAL THE SYSTEM</span><span><i>03</i> CHOOSE WHAT FITS <span aria-hidden="true">↓</span></span></div>
+    </section>
+    <section className="home-work" id="systems"><div className="tw-wrap"><div className="section-heading" data-reveal><div><p className="eyebrow">01 / A CLOSER LOOK</p><h2>Different worlds.<br /><em>Connected thinking.</em></h2></div><p>From studio floors to financial records.<br />Explore each system, its stage and its evidence.<br /><span className="collection-note">Project artwork is illustrative, not a product screenshot.</span></p></div><WorkCollection items={workItems(graph)} /><div className="browse-links"><Link href="/systems">All systems ↗</Link><Link href="/capabilities">Capabilities ↗</Link><Link href="/case-studies">Evidence & implementation notes ↗</Link><Link href="/services">Services ↗</Link></div></div></section>
+    <section className="studio-belief" data-reveal><div className="tw-wrap belief-grid"><div><p className="eyebrow">OUR STARTING POINT</p><WaveMark className="belief-mark" /></div><div><h2>The best answer<br />isn’t always <em>more AI.</em></h2><p>Sometimes it’s a clearer process. Sometimes it’s software that connects what you already have. And sometimes, it’s a carefully chosen role for AI.</p><Link href="/think">Let’s find what your system needs <span aria-hidden="true">↗</span></Link></div></div></section>
+    <section id="capabilities" className="capabilities-section tw-wrap" data-reveal><p className="eyebrow">02 / THE BIGGER PICTURE</p><h2>Grounded in what exists.<br /><em>Open to what’s next.</em></h2><p className="section-intro">Conventional software, creative workflows and AI each have a place. Their evidence is not interchangeable.</p><div className="layer-grid"><article><span className="layer-numeral" aria-hidden="true">01</span><p className="eyebrow">A / RECORDED WORK</p><h3>See the implementation.</h3><p>Explore system records and this working website prototype, with maturity and evidence kept visible.</p><Link href="/systems">Inspect the work ↗</Link></article><article><span className="layer-numeral" aria-hidden="true">02</span><p className="eyebrow">B / REUSABLE CAPABILITIES</p><h3>Check the foundation.</h3><p>Distinguish prototype demonstrations, graph-described capabilities and candidates awaiting assessment.</p><Link href="/capabilities">Explore capabilities ↗</Link></article><article><span className="layer-numeral" aria-hidden="true">03</span><p className="eyebrow">C / PROPOSED POSSIBILITIES</p><h3>Imagine what could fit.</h3><p>Explore proposed software, report, operations and creative workflows without mistaking them for deployed products.</p><Link href="/opportunities">Explore possibilities ↗</Link></article></div></section>
+    <section id="founders" className="founder-section"><div className="tw-wrap"><div className="section-heading" data-reveal><div><p className="eyebrow">03 / PEOPLE, NOT A BLACK BOX</p><h2>Human by design.<br /><em>Accountable by choice.</em></h2></div><p>Terrawave is the partnership of<br />Adarsh Singh Pawar and Rahul Arora.<br />System first. AI second.</p></div><div className="founder-grid">{founders.map(({ id, photo }) => {
+      const person = graph.entities.find(e => e.id === id);
+      if (!person) return null;
+      return <figure key={id} data-reveal><div className="founder-image"><Image src={`/founders/${photo}.webp`} alt={`${person.name}, co-founder of Terrawave`} width={800} height={1000} sizes="(max-width: 640px) 100vw, 50vw" /></div><figcaption><h3>{person.name}</h3><span className="eyebrow">Co-founder / Terrawave</span></figcaption></figure>;
+    })}</div></div></section>
+    <section className="closing-section tw-wrap" data-reveal><p className="eyebrow">EVERY BETTER SYSTEM STARTS SOMEWHERE.</p><h2>What’s <em>not working?</em></h2><p className="browse-intro">Describe one friction point. We’ll connect it to relevant work and help you frame a useful discovery conversation.</p><Link className="tw-button" href="/think">Map your problem <span aria-hidden="true">↗</span></Link><p>A short starting point. Deeper controls when you need them.</p></section>
+    </main>
+    <footer className="studio-footer"><div className="tw-wrap"><div className="footer-top"><Link href="/" aria-label="Terrawave home"><BrandLogo /></Link><span>Grounded in systems.<br />Moving things forward.</span><a href="#" className="back-to-top">BACK TO TOP ↑</a></div><p className="footer-statement" aria-hidden="true">make it <em>make sense.</em></p><div className="footer-bottom"><span>SYSTEM FIRST, AI SECOND.</span><span>© {new Date().getFullYear()} TERRAWAVE</span></div></div></footer>
+  </div>;
 }

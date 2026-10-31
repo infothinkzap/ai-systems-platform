@@ -13,7 +13,7 @@ interface AllocationControlProps {
 
 const ALLOCATIONS: { state: AllocationState; label: string; desc: string }[] = [
   { state: "HUMAN", label: "Human", desc: "Pure judgment. No automation." },
-  { state: "DETERMINISTIC", label: "Deterministic", desc: "Rules-based software. Zero hallucination risk." },
+  { state: "DETERMINISTIC", label: "Deterministic", desc: "Explicit rules. Input quality and rule correctness still need validation." },
   { state: "AI", label: "Artificial Intelligence", desc: "Probabilistic reasoning and extraction." },
   { state: "HYBRID", label: "Hybrid System", desc: "AI intelligence governed by deterministic rails." },
   { state: "NO_AI_REQUIRED", label: "No AI Required", desc: "Optimal structural path ignores AI completely." }

@@ -1,0 +1,135 @@
+.viewport {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #17191B; /* Graphite wrapper */
+}
+
+.logicalCanvas {
+  position: relative;
+  width: 384px;
+  height: 216px;
+  transform-origin: center center;
+  overflow: hidden;
+  /* Ensure pixelated rendering on all browsers */
+  image-rendering: pixelated;
+  image-rendering: -moz-crisp-edges;
+  image-rendering: crisp-edges;
+}
+
+/* Base Game Reset */
+.logicalCanvas * {
+  box-sizing: border-box;
+  user-select: none;
+}
+
+/* Animations */
+@keyframes bob {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1px); }
+}
+
+@keyframes flicker {
+  0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+  20%, 24%, 55% { opacity: 0.8; }
+  22% { opacity: 0.6; }
+}
+
+@keyframes stack {
+  0% { transform: translateY(0); opacity: 0.5; }
+  100% { transform: translateY(-4px); opacity: 1; }
+}
+
+@keyframes dropArc {
+  0% { transform: translateY(-15px) translateX(0px) rotate(0deg); }
+  50% { transform: translateY(-20px) translateX(0px) rotate(10deg); }
+  100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+}
+.dropAnim {
+  animation: dropArc 0.25s ease-out forwards;
+}
+
+@keyframes interactBob {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-3px); }
+}
+.interactBob {
+  animation: interactBob 1s infinite ease-in-out;
+}
+
+@keyframes signSwing {
+  0%, 100% { transform: rotate(0deg); }
+  25% { transform: rotate(1deg); }
+  75% { transform: rotate(-1deg); }
+}
+.signSwing {
+  animation: signSwing 4s infinite ease-in-out;
+  transform-origin: top center;
+}
+
+@keyframes fadeToBlack {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+.fadeToBlack {
+  animation: fadeToBlack 0.5s ease-in forwards;
+}
+
+@keyframes fadeFromBlack {
+  0% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.fadeFromBlack {
+  animation: fadeFromBlack 0.5s ease-out forwards;
+}
+
+@keyframes crtFlicker {
+  0% { opacity: 0.95; }
+  5% { opacity: 0.8; }
+  10% { opacity: 0.95; }
+  15% { opacity: 1; }
+  50% { opacity: 0.98; }
+  100% { opacity: 0.95; }
+}
+.crtFlicker {
+  animation: crtFlicker 0.15s infinite;
+}
+
+@keyframes blinkLed {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.2; }
+}
+.blinkLedFast {
+  animation: blinkLed 0.5s infinite;
+}
+.blinkLedSlow {
+  animation: blinkLed 2s infinite;
+}
+
+.bob {
+  animation: bob 1s steps(2, end) infinite;
+}
+
+.flicker {
+  animation: flicker 4s infinite;
+}
+
+.stack {
+  animation: stack 2s steps(4, end) infinite;
+}
+
+.signSwing {
+  animation: signSwing 6s ease-in-out infinite;
+  transform-origin: top center;
+}
+
+/* Reduced Motion Override */
+@media (prefers-reduced-motion: reduce) {
+  .bob, .flicker, .stack, .signSwing {
+    animation: none !important;
+  }
+}

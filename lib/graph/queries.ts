@@ -32,6 +32,8 @@ export const getDataSources = () => getEntitiesByType("DataSource");
 export const getDataPrimitives = () => getEntitiesByType("DataPrimitive");
 export const getOutcomes = () => getEntitiesByType("Outcome");
 export const getMetrics = () => getEntitiesByType("Metric");
+export const getOpportunities = () => getEntitiesByType("Opportunity");
+export const getProjects = () => getEntitiesByType("Project");
 
 /**
  * Gets all relationships where the given entity is the source.

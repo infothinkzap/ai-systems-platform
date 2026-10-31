@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { Manrope, Fraunces, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
-const geistSans = Geist({
+const geistSans = Manrope({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const editorial = Fraunces({
+  variable: "--font-editorial",
+  subsets: ["latin"],
+  style: ["normal", "italic"],
+  display: "swap",
 });
 
 const geistMono = Geist_Mono({
@@ -15,13 +22,13 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: {
     template: "%s | Terrawave",
-    default: "Terrawave | Problem-First AI Systems",
+    default: "Terrawave | System First, AI Second",
   },
-  description: "Terrawave builds deterministic and probabilistic intelligence systems to solve operational friction. Founded by Adarsh Singh Pawar and Rahul Arora.",
+  description: "See the system behind an operational problem. Explore where human judgment, explicit rules and AI belong. Founded by Adarsh Singh Pawar and Rahul Arora.",
   openGraph: {
     type: "website",
-    title: "Terrawave | AI Systems & Intelligence",
-    description: "Terrawave builds rigorous AI systems grounded in deterministic architecture.",
+    title: "Terrawave | System First, AI Second",
+    description: "First, see the system. Then decide what deserves intelligence.",
     siteName: "Terrawave",
   },
   twitter: {
@@ -41,11 +48,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${geistSans.variable} ${geistMono.variable} antialiased h-full`}>
+    <html lang="en" data-scroll-behavior="smooth" className={`${geistSans.variable} ${geistMono.variable} ${editorial.variable} antialiased h-full`}>
       <body className="min-h-full flex flex-col bg-background text-foreground">
-        <main className="flex-1 flex flex-col">
+        <div className="flex-1 flex flex-col">
           {children}
-        </main>
+        </div>
       </body>
     </html>
   );

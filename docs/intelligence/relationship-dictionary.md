@@ -2,6 +2,27 @@
 
 This dictionary defines the approved semantic relationship verbs used in the Terrawave Master Knowledge Graph.
 
+## Work, capability assessment and proposed possibilities (schema 1.5)
+
+Edges involving a `possibility` entity describe a hypothesis, never a delivered feature. `DEMONSTRATES` requires implementation evidence; `SUPPORTS_CAPABILITY_ASSESSMENT` deliberately does not.
+
+| Relationship | Meaning | Example |
+| :--- | :--- | :--- |
+| `DEMONSTRATES` | An implemented Project demonstrates a bounded capability, supported by its evidence. | Local platform demonstrates interactive web UI |
+| `HAS_EVIDENCE` | Project links to inspectable Evidence/source references. | Platform has local implementation sources |
+| `HAS_DELIVERY_READINESS` | Capability links to a separate readiness assessment, not a maturity or price claim. | Website development has prototype-scope readiness |
+| `SUPPORTS_CAPABILITY_ASSESSMENT` | A recorded system is a basis to investigate a capability; does not establish delivery. | Manaswini record supports inventory-tooling assessment |
+| `PROPOSES_SOLUTION_TO` | Opportunity addresses a Problem as an unvalidated hypothesis. | Proposed reporting addresses manual preparation |
+| `CANDIDATE_FOR` | Proposed Opportunity is intended for a Persona. | Reporting candidate for Practitioner |
+| `PROPOSES_WORKFLOW` | Opportunity points to its ordered, explicitly proposed Workflow. | Report pattern proposes review-and-delivery flow |
+| `USES_DATA` | Workflow consumes a DataPrimitive; proposed provenance stays unverified. | Proposed report uses chart data |
+| `HAS_PART` | Workflow contains a step; `step_ids` carries the same edges' order. | Proposed report has practitioner review |
+| `REQUIRES_ALLOCATION` | WorkflowStep points to one canonical Human/Deterministic/Hybrid/AI/No AI allocation. | Review requires Human |
+| `MAY_REUSE` | Possible reuse of a capability, subject to scope/readiness assessment. | Report pattern may reuse document validation |
+| `HAS_RISK` | Opportunity links to a possible failure mode or constraint. | Report may invent an interpretation |
+| `REQUIRES_VALIDATION` | Opportunity links to a specific question/validation requirement. | Check whether methods are documented |
+| `RELATED_WORK` | Existing Product/Project provides related context, not proof this opportunity is implemented. | Supplier matching has related CA work |
+
 To prevent graph bloat and maintain clarity, use only these relationships when extending the `terrawave-graph.yaml` file. Each relationship is directed (`Source` → `Relationship` → `Target`).
 
 ## Structural & Organizational

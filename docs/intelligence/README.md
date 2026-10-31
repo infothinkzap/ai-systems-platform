@@ -44,3 +44,15 @@ The ontology is heavily factored into specific conceptual dictionaries to mainta
 - **Brand Boundaries**: Terrawave is completely separate from *Randomly Systematic*.
 - **Iteration over Linearity**: The Terrawave Method and Client Journey are loops of continuous validation and improvement, not just linear pipelines.
 - **Website Projection**: The future website will allow visitors to traverse this exact graph (Person → Problem → Capability → System → Outcome → Conversation).
+
+## Schema 1.5: work, capability assessment and possibilities
+
+The same `terrawave-graph.yaml` now contains Project/Evidence records, capability support/readiness assessments, and proposed Opportunity/Workflow/WorkflowStep/Risk/ValidationRequirement entities. There is one loader and one relationship graph. Proposed inputs, personas and workflow instances carry `knowledge_layer: possibility`; they do not become demonstrated work merely because the graph contains them.
+
+- Existing Product IDs and canonical maturity values are preserved. A concept in the older product catalogue is still a concept, not demonstrated delivery.
+- A new Opportunity is always `concept` + `hypothesis` + `needs_validation`; the public label is Proposed. A real implementation needs its own evidence-backed work record.
+- `DEMONSTRATES` requires a Project linked to implementation Evidence. Graph-described and candidate capabilities are distinct from demonstrated prototype scope.
+- Delivery readiness is separate from maturity, technical possibility, pricing, staffing and packaging. No readiness record claims a fully packaged service.
+- `MAY_REUSE` and `RELATED_WORK` are contextual hypotheses, not deployed-feature claims. Proposed step allocations never rewrite an existing Product.
+- `scripts/seed-opportunities.ts` is an idempotent authoring/migration utility for the initial library. Runtime never imports its data; subsequent source-of-truth edits belong in the canonical YAML. The loader validates relationships and semantic contracts and refreshes its cache on development-file changes.
+- See `project-capability-inventory.md` for inspected evidence and missing projects. Unknown project names are not published as delivered work or aliased to existing systems.

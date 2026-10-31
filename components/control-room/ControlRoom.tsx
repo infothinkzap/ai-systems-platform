@@ -8,6 +8,7 @@ import { SystemSelector } from "./SystemSelector";
 import { SystemArchitecture } from "./SystemArchitecture";
 import { AllocationControl } from "./AllocationControl";
 import { OpportunityMapper } from "./OpportunityMapper";
+import { ProjectIdentity } from "@/components/brand/ProjectIdentity";
 
 interface ControlRoomProps {
   systems: ProductEntity[];
@@ -43,6 +44,7 @@ export function ControlRoom({ systems, graph }: ControlRoomProps) {
       {/* Header Bar */}
       <div className="border-b border-border bg-background py-8">
         <Container>
+          {activeSystem && <div className="control-room-identity"><ProjectIdentity id={activeSystem.id} /><p>EXPLORING: {activeSystem.name} · {activeSystem.maturity_status ?? "status not recorded"} · artwork is illustrative</p></div>}
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
             <div>
               <MonoLabel dot>Intelligence Control Room</MonoLabel>

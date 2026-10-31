@@ -1,7 +1,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
-import * as yaml from 'yaml';
 import { EntityType } from '../lib/graph/types';
+import { getGraph } from '../lib/graph/queries';
 
 interface GraphNode {
     id: string;
@@ -18,13 +18,11 @@ interface GraphEdge {
 }
 
 // Load Graph
-const graphPath = path.join(process.cwd(), 'docs', 'intelligence', 'terrawave-graph.yaml');
 const dictPath = path.join(process.cwd(), 'docs', 'intelligence', 'relationship-dictionary.md');
 
 try {
-    const fileContents = fs.readFileSync(graphPath, 'utf8');
     const dictContents = fs.readFileSync(dictPath, 'utf8');
-    const graphData = yaml.parse(fileContents);
+    const graphData = getGraph(); // Includes layer, opportunity, step and evidence contracts.
     
     const entities = graphData.entities as GraphNode[];
     const relationships = graphData.relationships as GraphEdge[];
@@ -37,7 +35,7 @@ try {
         documentedVerbs.add(match[1]);
     }
 
-    const getEntitiesByType = (type: EntityType) => entities.filter(e => e.type === type);
+    const getEntitiesByType = (type: EntityType) => entities.filter(e => e.type === type && graphData.entities.find(n => n.id === e.id)?.knowledge_layer !== "possibility");
     const countType = (t: EntityType) => getEntitiesByType(t).length;
     
     console.log("=== ENTITY COUNTS ===");
@@ -60,6 +58,7 @@ try {
     console.log(`Actions: ${countType("Action")}`);
     console.log(`Outcomes: ${countType("Outcome")}`);
     console.log(`Metrics: ${countType("Metric")}`);
+    console.log(`Proposed opportunities (separate from products): ${graphData.entities.filter(e => e.type === "Opportunity").length}`);
     
     console.log("\n=== RELATIONSHIP COUNTS ===");
     console.log(`Total Relationships: ${relationships.length}`);
