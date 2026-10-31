@@ -32,7 +32,7 @@ test("work browsing retains deployment scope and uses only graph relationships",
   assert.equal(manifest.workflows.length, 3);
   assert.ok(items.slice(0, 2).every(item => item.system.maturity_status === "deployed"));
   const ca = items.find(item => item.system.id === "product:ca_automation")!;
-  assert.equal(maturityLabel(ca.system), "Deployed · limited capacity");
+  assert.equal(maturityLabel(ca.system), "Deployed in limited capacity");
   for (const item of items) for (const entity of [...item.problems, ...item.workflows, ...item.capabilities]) {
     assert.ok(graph.relationships.some(r => [r.source, r.target].includes(item.system.id) && [r.source, r.target].includes(entity.id)));
   }

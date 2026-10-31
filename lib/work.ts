@@ -22,7 +22,9 @@ export function workItems(graph: SemanticGraph) {
 }
 
 export function maturityLabel(system: ProductEntity | ProjectEntity) {
-  return system.type === "Product" && system.deployment_scope === "limited_capacity" ? "Deployed · limited capacity" : system.maturity_status ?? "Status not recorded";
+  if (system.type === "Product" && system.deployment_scope === "limited_capacity") return "Deployed in limited capacity";
+  const labels = { deployed: "Deployed", production: "Deployed", prototype: "Prototype", building: "In development", concept: "Concept" };
+  return system.maturity_status ? labels[system.maturity_status] : "Status not recorded";
 }
 
 export const modeLabels = {
