@@ -3,7 +3,7 @@ metadata:
   name: Terrawave Semantic Ontology
   description: Machine-readable graph representing Terrawave's identity, capabilities, data provenance, and
     epistemic maturity.
-  last_updated: 2026-10-31
+  last_updated: 2026-11-02
 entities:
   - id: person:adarsh_singh_pawar
     type: Person
@@ -4172,6 +4172,34 @@ entities:
     type: Workflow
     name: Lessons, exercises and completion tracking
     knowledge_layer: work
+  - id: project:counterpoint
+    type: Project
+    name: Counterpoint
+    description: A research tool for examining news, research, political opinions and philosophical claims through
+      counterarguments, sources and missing context.
+    scope: Paste a claim or article, examine arguments and contrary evidence, inspect sources and uncertainty, and
+      review a structured report. Source-inspected implementation supports opt-in scholarly research, a no-AI
+      checklist, optional local-model assessment and human review. Research is on demand; a continuous
+      breaking-news feed and exhaustive coverage are not established.
+    maturity_status: prototype
+    epistemic_status: designed
+    engagement_type: unverified
+    knowledge_layer: work
+    features:
+      - Claim and article analysis
+      - Arguments and counterarguments
+      - Opt-in evidence research
+      - Source and uncertainty review
+      - Structured research reports
+  - id: evidence:counterpoint_source
+    type: Evidence
+    name: Counterpoint source inspection
+    description: README, analysis route and research test sources inspected in the user-supplied Desktop project.
+      This review did not execute Counterpoint or verify live retrieval.
+    evidence_type: prototype_evidence
+    source_refs:
+      - docs/intelligence/counterpoint-source-inspection.md
+    knowledge_layer: work
 relationships:
   - source: org:terrawave
     type: FOUNDED_BY
@@ -7827,3 +7855,9 @@ relationships:
   - source: workflow:manifestos_learning
     type: EXPERIENCES
     target: problem:poor_personalization
+  - source: project:counterpoint
+    type: HAS_EVIDENCE
+    target: evidence:counterpoint_source
+  - source: project:counterpoint
+    type: SUPPORTS_CAPABILITY_ASSESSMENT
+    target: cap:research_reporting

@@ -49,6 +49,7 @@ export interface ProjectEntity extends BaseEntity {
   engagement_type: "internal" | "portfolio" | "external_client" | "unverified";
   scope: string;
   technologies?: string[];
+  features?: string[];
 }
 export interface OpportunityEntity extends BaseEntity {
   type: "Opportunity";

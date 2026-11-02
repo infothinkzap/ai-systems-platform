@@ -3,7 +3,7 @@ import {createRequire} from "node:module";
 import {mkdir} from "node:fs/promises";
 const require=createRequire(import.meta.url);
 const {chromium}=require(process.env.TERRAWAVE_PLAYWRIGHT||"playwright");
-const browser=await chromium.launch({headless:true,channel:"chrome",args:["--disable-gpu"]});
+const browser=await chromium.launch({headless:true,channel:"chrome",args:["--disable-gpu", "--disable-renderer-backgrounding", "--disable-background-timer-throttling", "--disable-backgrounding-occluded-windows"]});
 const page=await browser.newPage({viewport:{width:1440,height:1000},acceptDownloads:true});
 page.setDefaultTimeout(90000);
 const errors=[];page.on("pageerror",e=>errors.push(e.message));
@@ -40,8 +40,8 @@ try {
   await page.getByRole("button",{name:"Download visual PDF ↗",exact:true}).click();
   await (await downloadEvent).saveAs("output/pdf/terrawave-opportunity-brief.pdf");
   await page.getByText("Compare people, rules and AI",{exact:true}).click();
-  await page.locator(".opportunity-flow").screenshot({path:"tmp/opportunity-playtest/astrology-flow-desktop.png",animations:"disabled",timeout:120000});
-  await page.locator(".opportunity-questions").screenshot({path:"tmp/opportunity-playtest/astrology-questions.png",animations:"disabled",timeout:120000});
+  if (!process.env.TERRAWAVE_SKIP_SCREENSHOTS) await page.locator(".opportunity-flow").screenshot({path:"tmp/opportunity-playtest/astrology-flow-desktop.png",animations:"disabled",timeout:120000});
+  if (!process.env.TERRAWAVE_SKIP_SCREENSHOTS) await page.locator(".opportunity-questions").screenshot({path:"tmp/opportunity-playtest/astrology-questions.png",animations:"disabled",timeout:120000});
   await page.getByText("Risks, scope and reusable foundations",{exact:true}).click();
   assert.match(await page.locator(".opportunity-result").innerText(),/No scientific validation of astrological prediction is claimed/);
   const cases=[
@@ -72,12 +72,12 @@ try {
   for(const path of ["/capabilities","/opportunities","/opportunities/astrology_reports","/work/terrawave_platform"]){
     await page.goto(base+path,{waitUntil:"networkidle"});
     assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth),`Mobile overflow: ${path}`);
-    await page.screenshot({path:`tmp/opportunity-playtest/mobile-${path.replaceAll("/","-")}.png`,animations:"disabled",timeout:120000});
+    if (!process.env.TERRAWAVE_SKIP_SCREENSHOTS) await page.screenshot({path:`tmp/opportunity-playtest/mobile-${path.replaceAll("/","-")}.png`,animations:"disabled",timeout:120000});
   }
   await page.goto(base+"/think",{waitUntil:"networkidle"});
   await page.getByRole("button",{name:"Reports using my astrology methods ↗",exact:true}).click();
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth));
-  await page.locator(".opportunity-flow").screenshot({path:"tmp/opportunity-playtest/astrology-flow-mobile.png",animations:"disabled",timeout:120000});
+  if (!process.env.TERRAWAVE_SKIP_SCREENSHOTS) await page.locator(".opportunity-flow").screenshot({path:"tmp/opportunity-playtest/astrology-flow-mobile.png",animations:"disabled",timeout:120000});
   assert.deepEqual(errors,[]);
   console.log("PASS: opportunity library, scope-prefill, required cases, targeted chart/method questions, approval retained under all five allocations, inferred/vague/unrelated requests, evidence layers, actual PDF download and mobile layouts.");
 }finally{await browser.close();}

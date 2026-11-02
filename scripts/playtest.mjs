@@ -5,7 +5,7 @@ import { createRequire } from "node:module";
 import { mkdir } from "node:fs/promises";
 const require = createRequire(import.meta.url);
 const { chromium } = require(process.env.TERRAWAVE_PLAYWRIGHT || "playwright");
-const browser = await chromium.launch({ headless: true, channel: "chrome", args: ["--disable-gpu"] });
+const browser = await chromium.launch({ headless: true, channel: "chrome", args: ["--disable-gpu", "--disable-renderer-backgrounding", "--disable-background-timer-throttling", "--disable-backgrounding-occluded-windows"] });
 const base = process.env.TERRAWAVE_URL || "http://localhost:3000";
 await mkdir("tmp/playtest", { recursive: true });
 await mkdir("output/pdf", { recursive: true });
@@ -24,7 +24,7 @@ if (process.env.TERRAWAVE_KEYBOARD_ONLY) {
     await page.keyboard.press("Enter");
     await page.locator(".interpretation-card").waitFor();
     await page.evaluate(() => window.scrollTo(0, 0));
-    await page.screenshot({ path: "tmp/playtest/lens-interpretation.png", animations: "disabled", timeout: 120000 });
+    if (!process.env.TERRAWAVE_SKIP_SCREENSHOTS) await page.screenshot({ path: "tmp/playtest/lens-interpretation.png", animations: "disabled", timeout: 120000 });
     await page.locator(".graph-disclosure > summary").focus();
     await page.keyboard.press("Space");
     assert.equal(await page.locator(".graph-disclosure").getAttribute("open"), "");
@@ -65,12 +65,11 @@ try {
   assert.equal(await page.locator(".hero-paths").getByRole("link", { name: "Explore our work", exact: true }).count(), 1);
   assert.equal(await page.locator(".hero-paths").getByRole("link", { name: "Map your problem", exact: true }).count(), 1);
   assert.equal(await page.locator("#problem").count(), 0);
-  await page.screenshot({ path: "tmp/playtest/home-desktop.png", fullPage: false, animations: "disabled", timeout: 120000 });
+  if (!process.env.TERRAWAVE_SKIP_SCREENSHOTS) await page.screenshot({ path: "tmp/playtest/home-desktop.png", fullPage: false, animations: "disabled", timeout: 120000 });
   await page.locator(".hero-paths").getByRole("link", { name: "Explore our work", exact: true }).click();
   await page.waitForURL("**/systems");
-  await page.getByRole("button", { name: "In use", exact: true }).click();
-  assert.equal(await page.locator(".work-card").count(), 2);
-  assert.match(await page.locator(".work-grid").innerText(), /limited capacity/i);
+  assert.equal(await page.locator(".work-card").count(), 8);
+  assert.equal(await page.locator(".work-card .status-tag").count(), 0);
   await page.locator('.work-card-title[href="/systems/ca_automation"]').click();
   await page.waitForURL("**/systems/ca_automation");
   await page.getByRole("heading", { name: "The problem it addresses", exact: true }).waitFor();
@@ -130,7 +129,7 @@ try {
   const download = await downloadEvent;
   assert.equal(download.suggestedFilename(), "terrawave-system-brief.pdf");
   await download.saveAs("output/pdf/terrawave-system-brief.pdf");
-  await page.screenshot({ path: "tmp/playtest/lens-result-desktop.png", fullPage: false, animations: "disabled", timeout: 120000 });
+  if (!process.env.TERRAWAVE_SKIP_SCREENSHOTS) await page.screenshot({ path: "tmp/playtest/lens-result-desktop.png", fullPage: false, animations: "disabled", timeout: 120000 });
   await page.getByRole("button", { name: "Start over", exact: true }).click();
   assert.equal(await page.locator("#problem").inputValue(), "");
   await page.locator("#problem").fill("purple moon zeppelins");
@@ -146,13 +145,13 @@ try {
   for (const path of ["/", "/systems", "/think", "/capabilities", "/services", "/case-studies"]) {
     await page.goto(base + path, { waitUntil: "networkidle" });
     assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth), `Mobile overflow: ${path}`);
-    await page.screenshot({ path: `tmp/playtest/mobile-${path.replaceAll("/", "") || "home"}.png`, fullPage: false, animations: "disabled", timeout: 120000 });
+    if (!process.env.TERRAWAVE_SKIP_SCREENSHOTS) await page.screenshot({ path: `tmp/playtest/mobile-${path.replaceAll("/", "") || "home"}.png`, fullPage: false, animations: "disabled", timeout: 120000 });
   }
   await page.goto(base + "/think", { waitUntil: "networkidle" });
   await page.getByRole("button", { name: "Stock records are hard to trust ↗", exact: true }).click();
   await page.getByText("Compare people, rules and AI", { exact: true }).click();
   assert.ok(await page.evaluate(() => document.documentElement.scrollWidth <= window.innerWidth));
-  await page.screenshot({ path: "tmp/playtest/lens-result-mobile.png", fullPage: false, animations: "disabled", timeout: 120000 });
+  if (!process.env.TERRAWAVE_SKIP_SCREENSHOTS) await page.screenshot({ path: "tmp/playtest/lens-result-mobile.png", fullPage: false, animations: "disabled", timeout: 120000 });
   assert.deepEqual(errors, []);
   console.log("PASS: both visitor paths, work filters, system/capability links, graph interaction, all five allocations, edit/restart, unsupported input, PDF download and mobile overflow checks.");
 } finally { await browser.close(); }

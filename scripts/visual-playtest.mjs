@@ -14,7 +14,7 @@ try {
   await page.goto(base, { waitUntil: "networkidle" });
   await page.evaluate(() => document.fonts.ready);
   assert.equal(await page.locator(".brand-mark").count(), 2);
-  assert.equal(await page.locator(".work-card .project-identity").count(), 7);
+  assert.equal(await page.locator(".work-card .project-identity").count(), 8);
   assert.equal(await page.locator('.work-card a[href="/work/terrawave_platform"]').count(), 0);
   const family = await page.locator("h1").evaluate(el => getComputedStyle(el).fontFamily);
   assert.match(family, /Manrope/i);
@@ -29,8 +29,8 @@ try {
   const cards = page.locator(".work-card");
   await cards.filter({ has: page.getByRole("heading", { name: "Manaswini Designer Studio Operations System", exact: true }) }).screenshot({ path: "tmp/visual-review/project-manaswini.png", animations: "disabled" });
   await cards.filter({ has: page.getByRole("heading", { name: "ManifestOS", exact: true }) }).screenshot({ path: "tmp/visual-review/project-manifestos.png", animations: "disabled" });
-  for (const filter of ["In progress", "Concepts", "All work"]) await page.getByRole("button", { name: filter, exact: true }).click();
-  assert.equal(await cards.count(), 7);
+  assert.equal(await page.locator(".work-filters").count(), 0);
+  assert.equal(await cards.count(), 8);
   await page.locator(".studio-belief").scrollIntoViewIfNeeded();
   await page.locator(".studio-belief").screenshot({ path: "tmp/visual-review/belief.png", animations: "disabled" });
   await page.locator(".founder-section").scrollIntoViewIfNeeded();
@@ -58,5 +58,5 @@ try {
   assert.equal(await page.locator(".sculpture-orbit").evaluate(el => getComputedStyle(el).animationName), "none");
   assert.equal(await page.locator('[data-reveal="pending"]').count(), 0);
   assert.deepEqual(errors, []);
-  console.log("PASS: 7 project identities, platform excluded, logo, fonts, interactive/keyboard hero, filters, detail pages, founders, discovery route, 390/768/1024px layouts, reduced motion and no runtime errors.");
+  console.log("PASS: 8 project identities, platform excluded, logo, fonts, interactive/keyboard hero, filters, detail pages, founders, discovery route, 390/768/1024px layouts, reduced motion and no runtime errors.");
 } finally { await browser.close(); }

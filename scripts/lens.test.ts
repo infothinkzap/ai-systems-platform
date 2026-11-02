@@ -23,7 +23,7 @@ test("lexical matches use real graph contexts and unknown text stays unresolved"
 
 test("work browsing retains deployment scope and uses only graph relationships", () => {
   const items = workItems(graph);
-  assert.equal(items.length, 7);
+  assert.equal(items.length, 8);
   assert.ok(!items.some(item => item.system.id === "project:terrawave_platform"));
   const manifest = items.find(item => item.system.id === "project:manifestos")!;
   assert.equal(manifest.href, "/work/manifestos");

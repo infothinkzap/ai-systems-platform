@@ -1,12 +1,13 @@
 const identities: Record<string, { name: string; category: string; theme: string; symbol: string; note: string }> = {
+  counterpoint: { name: "Counterpoint", category: "RESEARCH / ANOTHER PERSPECTIVE", theme: "counterpoint", symbol: "debate", note: "There is more than one side to a claim." },
   ai_cfo: { name: "AI CFO", category: "FINANCIAL INTELLIGENCE", theme: "cfo", symbol: "contour", note: "A clearer financial picture." },
   ca_automation: { name: "CA / Automation", category: "ACCOUNTING SYSTEMS", theme: "ca", symbol: "register", note: "Bring the records together." },
   manaswini_operations: { name: "Manaswini", category: "STUDIO OPERATIONS", theme: "manaswini", symbol: "weave", note: "The fabric of a working studio." },
   lead_intelligence: { name: "Lead Intelligence", category: "CONVERSATION + CONTEXT", theme: "lead", symbol: "route", note: "Every conversation has a next step." },
   manifestos: { name: "ManifestOS", category: "INTENTION INTO PRACTICE", theme: "manifest", symbol: "sun", note: "A little intention. A daily practice." },
   terrawave_platform: { name: "terrawave.", category: "THE CONNECTED PLATFORM", theme: "terra", symbol: "wave", note: "Find the system beneath the surface." },
-  examos: { name: "ExamOS", category: "LEARNING SYSTEMS / CONCEPT", theme: "exam", symbol: "steps", note: "A proposed path through preparation." },
-  selfos: { name: "SelfOS", category: "PERSONAL CONTEXT / CONCEPT", theme: "self", symbol: "orbit", note: "A concept for connected context." },
+  examos: { name: "ExamOS", category: "LEARNING SYSTEMS", theme: "exam", symbol: "steps", note: "A connected path through preparation." },
+  selfos: { name: "SelfOS", category: "PERSONAL CONTEXT", theme: "self", symbol: "orbit", note: "Bring personal context together." },
 };
 
 export function ProjectIdentity({ id, className = "" }: { id: string; className?: string }) {
@@ -16,6 +17,7 @@ export function ProjectIdentity({ id, className = "" }: { id: string; className?
   return <div className={`project-identity identity-${identity.theme} ${className}`} aria-hidden="true">
     <span className="identity-category">{identity.category}</span>
     <svg className="identity-art" viewBox="0 0 600 320" fill="none">
+      {identity.symbol === "debate" && <g transform="translate(398 153)" stroke="currentColor"><circle r="102" strokeOpacity=".25"/><path d="M-13-80a82 82 0 0 0 0 160M13-80a82 82 0 0 1 0 160" strokeWidth="4"/><path d="M-65-25H65m-13-12 13 12-13 12M65 25H-65m13-12-13 12 13 12" strokeWidth="2"/><path d="M0-105v210" strokeDasharray="2 8" strokeOpacity=".5"/></g>}
       {identity.symbol === "weave" && <g transform="translate(390 162) rotate(-38)">{Array.from({length:9},(_,i)=><g key={i}><rect x={-103+i*23} y="-105" width="12" height="210" rx="6" fill="currentColor" opacity={i%2 ? ".22" : ".7"}/><path d={`M-108 ${-90+i*23}H108`} stroke="currentColor" strokeWidth="7" opacity=".32"/></g>)}</g>}
       {identity.symbol === "register" && <g transform="translate(378 158) rotate(-12)">{Array.from({length:7},(_,i)=><rect key={i} x={-90+i*10} y={-105+i*10} width="175" height="205" rx="3" stroke="currentColor" strokeOpacity={.2+i*.1}/>)}<path d="M-22-24h61M-22-3h61M-22 18h35" stroke="currentColor" strokeWidth="4"/><path d="m18 57 13 13 30-35" stroke="currentColor" strokeWidth="5"/></g>}
       {identity.symbol === "contour" && <g transform="translate(395 157)">{Array.from({length:25},(_,i)=><ellipse key={i} rx={28+i*3.2} ry={105-i*2.3} transform={`rotate(${i*7.2})`} stroke="currentColor" strokeOpacity={.25+i*.025}/>)}<circle r="17" fill="currentColor"/></g>}

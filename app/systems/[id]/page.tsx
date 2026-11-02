@@ -2,7 +2,6 @@ import { getEntity, getGraph } from "@/lib/graph/queries";
 import { ProductEntity } from "@/lib/graph/types";
 import { GlobalNav } from "@/components/nav/GlobalNav";
 import { Container } from "@/components/ui/Container";
-import { MonoLabel } from "@/components/ui/MonoLabel";
 import { StructuralLine } from "@/components/ui/StructuralLine";
 import { SystemExplorer } from "@/components/system/SystemExplorer";
 import { SystemComparison } from "@/components/system/SystemComparison";
@@ -31,7 +30,6 @@ export default async function SystemPage(props: { params: Promise<{ id: string }
   }
 
   // Derive evidence flags based on maturity and epistemic status
-  const isDeployed = system.maturity_status === "deployed";
   const isPrototype = system.maturity_status === "prototype";
   const evidenceText = `Recorded evidence: ${system.evidence?.join(", ").replaceAll("_", " ") || "Not recorded"}. ${isPrototype ? "Prototype; not in production." : "Maturity describes engineering state, not proof of business outcomes."}`;
   const problems = relatedEntities(fullId, graph, "Problem");
@@ -58,13 +56,7 @@ export default async function SystemPage(props: { params: Promise<{ id: string }
             <div className="lg:col-span-9">
               <ProjectIdentity id={fullId} className="project-identity-detail" />
               <div className="mb-12">
-                <div className="flex flex-wrap gap-4 items-center mb-6">
-                  <MonoLabel variant={isDeployed ? "accent" : "default"}>{system.maturity_status}</MonoLabel>
-                  {system.offering_mode && <MonoLabel>{system.offering_mode.replace("_", " ")}</MonoLabel>}
-                  {system.epistemic_status && <MonoLabel variant="muted">{system.epistemic_status}</MonoLabel>}
-                </div>
-                
-                <h1 className="text-5xl font-medium tracking-tight mb-8">{system.name}</h1>
+<h1 className="text-5xl font-medium tracking-tight mb-8">{system.name}</h1>
                 <StructuralLine />
               </div>
 
@@ -78,10 +70,8 @@ export default async function SystemPage(props: { params: Promise<{ id: string }
               </section>
 
               {/* Evidence / Reality Panel */}
-              <div id="evidence" className="bg-terra-stone/5 border border-terra-stone/20 p-6 mb-10 scroll-mt-24">
-                <h3 className="text-xs font-mono uppercase tracking-widest text-terra-graphite/60 mb-2">
-                  Evidence / Reality
-                </h3>
+              <details id="evidence" className="bg-terra-stone/5 border border-terra-stone/20 p-6 mb-10 scroll-mt-24">
+                <summary>Implementation notes and sources</summary>
                 <p className="text-sm text-terra-graphite">
                   {evidenceText}
                 </p>
@@ -92,7 +82,7 @@ export default async function SystemPage(props: { params: Promise<{ id: string }
                 )}
                 <p className="text-sm mt-4">No measured business outcome or public customer validation is attached to this record.</p>
                 <Link href="/case-studies" className="text-link">Read the evidence & implementation notes ↗</Link>
-              </div>
+              </details>
 
               {/* System Architecture */}
               <details className="lens-disclosure mb-10">
